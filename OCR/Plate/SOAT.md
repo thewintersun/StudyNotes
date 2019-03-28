@@ -19,6 +19,10 @@ https://www.openalpr.com/benchmarks.html
 https://www.openalpr.com/benchmarks/opensource_us.html
 https://www.openalpr.com/benchmarks/commercial_us.html
 
+<b>翔云OCR服务</b>
+
+https://www.netocr.com/
+
 
 <h2>BenchMark</h2>
 
