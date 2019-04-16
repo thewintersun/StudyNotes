@@ -1,9 +1,10 @@
-# PaperReadingNotes
+# Categories
 
-DataClean
-Classification
-Detection
-GAN
-OCR
+1. DataClean
+2. Classification
+3. Detection
+4. OCR
+5. GAN
+
 
 
