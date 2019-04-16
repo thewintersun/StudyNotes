@@ -2,7 +2,6 @@ Face Recognition
 论文：GhostVLAD for set-based face recognition
 地址：https://arxiv.org/abs/1810.09951
 阅读：https://mp.weixin.qq.com/s/R1hdkPTdFCo7JvOKNcEzJg 
---------------------------------------------------------------------------------
 
 Data Clean 
 论文：Few-Example Object Detection with Model Communication
