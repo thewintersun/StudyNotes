@@ -1,2 +1,9 @@
 # PaperReadingNotes
-Only paper reading notes for recording. 
+
+DataClean
+Classification
+Detection
+GAN
+OCR
+
+
