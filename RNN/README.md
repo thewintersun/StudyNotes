@@ -22,11 +22,13 @@ World2Vec 介绍：
 Google 地址：https://code.google.com/archive/p/word2vec/
 
 论文：Sequence to Sequence Learning with Neural Networks
+
 论文地址：https://arxiv.org/pdf/1409.3215.pdf
 
 An Intuitive Explanation of Connectionist Temporal Classification
 CRNN
 论文：An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition
+
 论文地址：https://arxiv.org/abs/1507.05717
 
 CTC 
@@ -40,12 +42,4 @@ CTC
 
 论文：Sequence to Sequence Learning for Optical Character Recognition
 论文地址：https://arxiv.org/abs/1511.04176
- 
- def RNN(h, x, W_h, U_h, W_y, b_h, b_y):
-    y = []
-    for t in range(x.size(0)):
-      h = torch.tanh(x[t] @ W_h + h @ U_h + b_h)
-      y += [torch.tanh(h @ W_y + b_y)]
-      if t % 10 == 0:
-        print("stats: ", h.mean(), h.var())
-    return torch.stack(y), h
+  
