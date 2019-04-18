@@ -47,3 +47,12 @@ In other words we have two separate RNNs: One RNN is receiving the input vectors
 
 **Getting fancy.** I’d like to briefly mention that in practice most of us use a slightly different formulation than what I presented above called a Long Short-Term Memory (LSTM) network. The LSTM is a particular type of recurrent network that works slightly better in practice, owing to its more powerful update equation and some appealing backpropagation dynamics. I won’t go into details, but everything I’ve said about RNNs stays exactly the same, *except the mathematical form for computing the update (the line self.h = ... ) gets a little more complicated*. 
 
+### Bidirectional RNN
+Bidirectional RNNs are based on the idea that the output at time t may not only depend on the previous elements in the sequence, but also future elements. For example, to predict a missing word in a sequence you want to look at both the left and the right context. Bidirectional RNNs are quite simple. They are just two RNNs stacked on top of each other. The output is then computed based on the hidden state of both RNNs.
+
+<img src="http://www.wildml.com/wp-content/uploads/2015/09/bidirectional-rnn-300x196.png" >
+
+### Deep (Bidirectional) RNNs
+Deep (Bidirectional) RNNs are similar to Bidirectional RNNs, only that we now have multiple layers per time step. In practice this gives us a higher learning capacity (but we also need a lot of training data).
+
+<img src="http://www.wildml.com/wp-content/uploads/2015/09/Screen-Shot-2015-09-16-at-2.21.51-PM-272x300.png">
