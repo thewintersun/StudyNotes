@@ -34,7 +34,7 @@ PyTorch implementation:
         print("stats: ", h.mean(), h.var())
     return torch.stack(y), h
 ```
-<img src="https://github.com/aliceyayunji/ML-Notes/tree/master/common/images/LSTM3-SimpleRNN.png" width=720 height=240>
+<img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png" width=720 height=240>
 
 The above specifies the forward pass of a vanilla RNN. This RNN’s parameters are the three matrices W_hh, W_xh, W_hy. _The hidden state self.h is initialized with the zero vector_. The np.tanh function implements a non-linearity that squashes the activations to the range [-1, 1]. Notice briefly how this works: There are two terms inside of the tanh: one is based on the previous hidden state and one is based on the current input. In numpy np.dot is matrix multiplication. The two intermediates interact with addition, and then get squashed by the tanh into the new state vector. 
 
