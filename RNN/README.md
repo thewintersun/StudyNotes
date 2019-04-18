@@ -1,16 +1,6 @@
- 0 - The Unreasonable Effectiveness of Recurrent Neural Networks
+
 The fall of RNN / LSTM
 https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0
-
-The Unreasonable Effectiveness of Recurrent Neural Networks
-http://karpathy.github.io/2015/05/21/rnn-effectiveness/
- 
- RNN Blog:
-http://karpathy.github.io/2015/05/21/rnn-effectiveness/ 
-
-RNN computation. So how do these things work? At the core, RNNs have a deceptively simple API: They accept an input vector x and give you an output vector y. However, crucially this output vector’s contents are influenced not only by the input you just fed in, but also on the entire history of inputs you’ve fed in in the past. Written as a class, the RNN’s API consists of a single step function:
-
-博客地址： https://gist.github.com/karpathy/d4dee566867f8291f086 
 
 RNN: 其他博客教程
 http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/
@@ -20,8 +10,6 @@ http://www.deeplearning.net/tutorial/rnnslu.html#rnnslu
 http://www.deeplearning.net/tutorial/lstm.html#lstm
 
 ## RNN 
-
-
 Attention and Augmented Recurrent Neural Network
 https://distill.pub/2016/augmented-rnns/
 https://github.com/kjw0612/awesome-rnn
