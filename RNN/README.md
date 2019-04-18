@@ -13,10 +13,7 @@ http://www.deeplearning.net/tutorial/lstm.html#lstm
 Attention and Augmented Recurrent Neural Network
 https://distill.pub/2016/augmented-rnns/
 https://github.com/kjw0612/awesome-rnn
-
-
-LSTM介绍：
-http://colah.github.io/posts/2015-08-Understanding-LSTMs/ 
+ 
 
 World2Vec 介绍：
 Google 地址：https://code.google.com/archive/p/word2vec/
