@@ -3,8 +3,6 @@ The fall of RNN / LSTM
 https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0
 
 RNN: 其他博客教程
-http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/
-http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/
 https://zhuanlan.zhihu.com/p/22930328
 http://www.deeplearning.net/tutorial/rnnslu.html#rnnslu
 http://www.deeplearning.net/tutorial/lstm.html#lstm
