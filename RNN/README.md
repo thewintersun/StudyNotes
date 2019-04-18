@@ -1,29 +1,16 @@
-
+ ## RNN 
 The fall of RNN / LSTM
 https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0
 
-RNN: 其他博客教程
-https://zhuanlan.zhihu.com/p/22930328
-http://www.deeplearning.net/tutorial/rnnslu.html#rnnslu
-http://www.deeplearning.net/tutorial/lstm.html#lstm
-
-## RNN 
 Attention and Augmented Recurrent Neural Network
-https://distill.pub/2016/augmented-rnns/
-https://github.com/kjw0612/awesome-rnn
- 
-
-World2Vec 介绍：
-Google 地址：https://code.google.com/archive/p/word2vec/
+https://distill.pub/2016/augmented-rnns/ 
 
 论文：Sequence to Sequence Learning with Neural Networks
-
 论文地址：https://arxiv.org/pdf/1409.3215.pdf
 
 An Intuitive Explanation of Connectionist Temporal Classification
 CRNN
-论文：An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition
-
+论文：An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition 
 论文地址：https://arxiv.org/abs/1507.05717
 
 CTC 
