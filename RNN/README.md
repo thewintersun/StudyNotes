@@ -24,4 +24,4 @@ CTC
 
 论文：Sequence to Sequence Learning for Optical Character Recognition
 论文地址：https://arxiv.org/abs/1511.04176
-  
+   
