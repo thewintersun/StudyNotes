@@ -8,7 +8,8 @@ As for the generation of text boxes, PMTD reinterprets the obtained 2D soft mask
 
 ### 贡献
 As there exist differences between text detection datasets and object detection datasets, such as the different distribution of aspect ratios and scales, we tailor-make a Mask R-CNN based baseline for text detection, which outperforms all previous methods on ICDAR 2017 MLT dataset. 
+
 Furthermore, the proposed PMTD raises the F-measure to 80.13%. The main contributions of this paper are three-fold:
- We propose the Pyramid Mask Text Detector for scene text detection, and extensive experiments demonstrate its state-of-the-art performance on several benchamark datasets.
- We propose to perform “soft” segmentation betweentext region and non-text region, incorporating the shape and location information into the model training and alleviating the inaccuracy labeling for the instance boundary.
- We introduce a novel plane clustering algorithm to find better text box with the 3D coordinate, which predicts more accurate text box and improves the robustness to imprecise bounding box predictions.
+- We propose the Pyramid Mask Text Detector for scene text detection, and extensive experiments demonstrate its state-of-the-art performance on several benchamark datasets.
+- We propose to perform “soft” segmentation betweentext region and non-text region, incorporating the shape and location information into the model training and alleviating the inaccuracy labeling for the instance boundary.
+- We introduce a novel plane clustering algorithm to find better text box with the 3D coordinate, which predicts more accurate text box and improves the robustness to imprecise bounding box predictions.
