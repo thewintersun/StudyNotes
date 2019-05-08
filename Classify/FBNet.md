@@ -4,4 +4,5 @@
 机构： FaceBook
 
 
-Abstract：
+### Abstract：
+To address these, we propose a differentiable neural architecture search (DNAS) framework that uses gradient-based methods to __optimize ConvNet architectures__, avoiding enumerating and training individual architectures separately as in previous methods.
