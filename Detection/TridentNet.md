@@ -8,14 +8,7 @@ Scale-Aware Trident Networks for Object Detection
 - 代码论文： Naiyan Wang：SimpleDet: 一套简单通用的目标检测与物体识别框架
 
 https://arxiv.org/abs/1903.05831
-​
-arxiv.org
 SimpleDet: A Simple and Versatile Distributed Framework for Object Detection and Instance Recognition
-SimpleDet: A Simple and Versatile Distributed Framework for Object Detection and Instance Recognition
-​
-arxiv.org
-介绍
-
 
 With the help of dilated convolutions [43], different branches of trident blocks have the same network structure and share the same parameter weights yet have different receptive fields.
 
