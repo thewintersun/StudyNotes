@@ -1,13 +1,11 @@
 Scale-Aware Trident Networks for Object Detection
-- 论文地址:Scale-Aware Trident Networks for Object Detection
+- 论文地址: https://arxiv.org/abs/1903.05831
 - 作者：Yanghao Li, Yuntao Chen, Naiyan Wang, Zhaoxiang Zhang
 - 机构：TuSimple
 - 作者知乎：知乎用户
 - 代码地址：TuSimple/simpledet
-- 作者知乎解析：Naiyan Wang：TridentNet：处理目标检测中尺度变化新思路
-- 代码论文： Naiyan Wang：SimpleDet: 一套简单通用的目标检测与物体识别框架
-
-https://arxiv.org/abs/1903.05831
+- 作者知乎解析：https://zhuanlan.zhihu.com/p/54334986 
+- 代码论文： https://github.com/TuSimple/simpledet
 SimpleDet: A Simple and Versatile Distributed Framework for Object Detection and Instance Recognition
 
 With the help of dilated convolutions [43], different branches of trident blocks have the same network structure and share the same parameter weights yet have different receptive fields.
