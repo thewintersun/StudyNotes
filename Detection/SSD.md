@@ -18,4 +18,6 @@ Our improvements include：
 - and applying these filters to multiple feature maps from the later stages of a network in order to perform detection at multiple scales. 
 With these modifications—especially using multiple layers for prediction at different scales—we can achieve high-accuracy using relatively low resolution input, further increasing detection speed.
 
-
+mxnet源码：
+https://github.com/zhreshold/mxnet-ssd 
+https://github.com/dmlc/mxnet/tree/master/example/ssd
