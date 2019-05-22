@@ -1,12 +1,13 @@
  ## RNN 
+基础知识：https://zhuanlan.zhihu.com/p/51383402 
+（完全解析RNN, Seq2Seq, Attention注意力机制）
+
 The fall of RNN / LSTM
 https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0
 
 Attention and Augmented Recurrent Neural Network
 https://distill.pub/2016/augmented-rnns/ 
 
-论文：Sequence to Sequence Learning with Neural Networks
-论文地址：https://arxiv.org/pdf/1409.3215.pdf
 
 An Intuitive Explanation of Connectionist Temporal Classification
 CRNN
