@@ -29,11 +29,6 @@ Training Region-based Object Detectors with Online Hard Example Mining
 论文：Path Aggregation Network for Instance Segmentation
 论文地址：https://arxiv.org/abs/1803.01534
 
-SSD
-论文：https://arxiv.org/abs/1512.02325
-mxnet源码：
-https://github.com/zhreshold/mxnet-ssd 
-https://github.com/dmlc/mxnet/tree/master/example/ssd
 
 YOLOV3
 博客：https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/
