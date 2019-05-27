@@ -6,3 +6,8 @@ http://people.csail.mit.edu/junyanz/
 code:
 https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix 
 
+从DCGAN到SELF-MOD：GAN的模型架构发展一览
+https://mp.weixin.qq.com/s/9GeryvW5PI93FCmTpuFEPQ
+
+Ian GoodFellow最新演讲：对抗机器学习的进展与挑战（附视频、PPT下载）
+https://mp.weixin.qq.com/s/CHtQvbNLDTC29Vp-6KcGkA
