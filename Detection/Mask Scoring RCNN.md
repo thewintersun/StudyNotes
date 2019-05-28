@@ -19,10 +19,12 @@
 
 training过程：box分支和mask保持不变，输出的mask先经过阈值为0.5的binarize，再计算binary mask和gt的IoU作为target，采用L2 loss作为损失函数，loss weight设为1，3个分支同时end-to-end训练。
 
-inference过程：检测分支输出score最高的100个框，再送入mask分支，得到mask结果，RoI feature map再和mask送入MaskIoU分支得到mask iou，与box的classification score相乘就得到最后的mask score。
+inference过程：检测分支输出score最高的100个框，再送入mask分支，得到mask结果，RoI feature map再和mask送入MaskIoU分支得到mask iou，与box的classification score相乘就得到最后的mask score.
+
 <img src='https://github.com/zjhuang22/maskscoring_rcnn/raw/master/demo/network.png' />
 
 实验结果，在COCO 2017 test集上，相对于Mask R-CNN，mask AP有1个点多的提升。同时作者还做了对比实验，验证不同的MaskIoU输入对性能的影响。
+
 <img src='https://pic3.zhimg.com/v2-c12c964f23c0b1829bb816a2df82d4d2_b.jpg' />
 
 文章列举了4种输入方式：
