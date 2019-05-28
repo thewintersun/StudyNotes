@@ -1,8 +1,8 @@
 ### Single-Shot Refinement Neural Network for Object Detection
-论文地址：https://arxiv.org/abs/1711.06897
-作者：Shifeng Zhang, Longyin Wen, Xiao Bian, Zhen Lei, Stan Z. Li
-机构：中科院
-代码：https://github.com/sfzhang15/RefineDet
+- 论文地址：https://arxiv.org/abs/1711.06897
+- 作者：Shifeng Zhang, Longyin Wen, Xiao Bian, Zhen Lei, Stan Z. Li
+- 机构：中科院
+- 代码：https://github.com/sfzhang15/RefineDet
 
 
 #### 摘要
