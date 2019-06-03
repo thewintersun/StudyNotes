@@ -54,7 +54,7 @@ Anchor 的概率分布被分解为两个条件概率分布，也就是给定图�
 这里面还有个问题，就是对于某个 anchor，应该优化和哪个 ground truth 的 IoU，也就是说应该把这个 anchor 分配给哪个 ground truth。对于以前常规的 anchor，我们可以直接计算它和所有 ground truth 的 IoU，然后将它分配给 IoU 最大的那个 gt。但是很不幸现在的 anchor 的 w 和 h 是不确定的，是一个需要预测的变量。我们将这个 anchor 和某个 gt 的 IoU 表示为 <img src='https://www.zhihu.com/equation?tex=%5Ctext%7BvIoU%7D%28a_%7Bwh%7D%2C+%5Ctext%7Bgt%7D%29%3D%5Cmax_%7Bw%3E0%2Ch%3E0%7D%5Ctext%7BIoU%7D_%7Bnormal%7D%28a_%7Bwh%7D%2C+%5Ctext%7Bgt%7D%29' />。当然我们不可能真的把所有可能的 w 和 h 遍历一遍然后求 IoU 的最大值，所以采用了近似的方法，也就是 sample 一些可能的 w 和 h。理论上 sample 得越多，近似效果越好，但出于效率的考虑，我们 sample 了常见的 9 组 w 和 h。我们通过实验发现，最终结果对 sample 的组数这个超参并不敏感，也就是说不管 sample 多少组，近似效果已经足够。
 
 #### 生成 anchor
-在得到 anchor 位置和中心点的预测之后，我们便可以生成 anchor 了，如下图所示。这时的 anchor 是稀疏而且每个位置不一样的。采用生成的 anchor 取代 sliding window，AR (Average Recall) 已经可以超过普通 RPN 4 个点了，代价仅仅是增加两个 1x1 conv。
+在得到 anchor 位置和中心点的预测之后，我们便可以生成 anchor 了，如下图所示。这时的 anchor 是稀疏而且每个位置不一样的。采用生成的 anchor 取代 sliding window，AR (Average Recall) 已经可以超过普通 RPN 4 个点了，代价仅仅是增加两个 1x1 conv。<br/>
 <img src='https://pic2.zhimg.com/80/v2-8ddde816c9d3d650be4e9f85f9a7520d_hd.jpg' width=50% height=50% /> 
 
 #### Feature Adaption
@@ -70,11 +70,11 @@ Anchor 的概率分布被分解为两个条件概率分布，也就是给定图�
 #### 高质量 proposal 的正确打开方式
 故事到这里其实也可以结束了，但是我们遇到了和之前一些改进 proposal 的 paper 里相同的问题，那就是 proposal 质量提升很多（如下图），但是在 detector 上性能提升比较有限。在不同的检测模型上，使用 Guided Anchoring 可以提升 1 个点左右。明明有很好的 proposal，但是 mAP 却没有涨很多，让人十分难受。
 
+<img src='https://pic3.zhimg.com/80/v2-4cd6d5c49d3e2b8252a0f052a63013b6_hd.jpg'  width=50% height=50% /> 
 
 经过一番探究，我们发现了以下两点：1. 减少 proposal 数量，2. 增大训练时正样本的 IoU 阈值（这个更重要）。既然在 top300 里面已经有了很多高 IoU 的 proposal，那么何必用 1000 个框来训练和测试，既然 proposal 们都这么优秀，那么让 IoU 标准严格一些也未尝不可。
 
 这个正确的打开方式基本是 Jiaqi 独立调出来的，让 performance 一下好看了很多。通过这两个改进，在 Faster R-CNN 上的涨点瞬间提升到了 2.7 个点（没有加任何 trick），其他方法上也有大幅提升。
-<img src='https://pic3.zhimg.com/80/v2-4cd6d5c49d3e2b8252a0f052a63013b6_hd.jpg'  width=50% height=50% /> 
 
 <img src='https://pic4.zhimg.com/80/v2-f07fe34facf12bd22ef8977494c9638b_hd.jpg'  width=50% height=50% /> 
 
