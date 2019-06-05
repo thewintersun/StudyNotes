@@ -62,7 +62,7 @@ RAB 模块是一个类似 maxout 的单元，理论上它可以逼近任何连�
 
 跟训练 RPN 网络相似，R-DAD 也需要最小化分类损失和回归损失，如下：
 
-<img src='https://mmbiz.qpic.cn/mmbiz_png/VBcD02jFhgmgJo4tUzibw4mStnbicw7QWo2iaSiaPnerBZZMp9rMeAUkezxpOZ5WOciblOgRiazgJDbDO7lOs2HTl1Pg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1' />
+<img src='https://mmbiz.qpic.cn/mmbiz_png/VBcD02jFhgmgJo4tUzibw4mStnbicw7QWo2iaSiaPnerBZZMp9rMeAUkezxpOZ5WOciblOgRiazgJDbDO7lOs2HTl1Pg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1' width=50% height=50% />
 
 #### 实验结果
 文章中做了各种设置的组合，关于 MRP 里缩放因子的组合、是否有 RDA 模块以及是否上采样，得分如下表所示：
