@@ -18,7 +18,7 @@ https://github.com/ltnghia/SESIV matlab code
 
 文章旨在推进视频显著实例分割的发展，推出新的视觉任务： 视频语义显著实例分割（video semantic salient instance segmentation， VSSIS)， 也就是 语义实例 - 显著目标（Semantic Instance - Salient Object， SISO)，融合了两种分割任务：语义实例分割，显著目标分割。
 
-![1568704321054](C:\Users\j00496872\Desktop\Notes\raw_images\1568704321054.png)
+![1568704321054](D:\Notes\raw_images\1568704321054.png)
 
 - a) 显著区域是一个前景和背景的二分类，前景有多个类别物体并区分。
 - b) 显著实例在显著区域的基础上，将多个类别的前景进行区别。
@@ -59,7 +59,7 @@ We remark that in this paper, ==an instance in a video is defined to be salient 
 
 显著目标分割（SOS）的相关数据集列表：
 
-![1568706629678](C:\Users\j00496872\Desktop\Notes\raw_images\1568706629678.png)
+![1568706629678](D:\Notes\raw_images\1568706629678.png)
 
 **语义实例分割**（Semantic instance segmentation，SIS）任务包含了目标检测和语义分割任务，有两种实现方法：
 
@@ -88,23 +88,23 @@ We remark that in this paper, ==an instance in a video is defined to be salient 
 
 对于每个视频帧，我们提供了3种基本Ground Truth 标签(即，显著性标签，实例标签，语义标签，如图3所示)。
 
-![1568778286433](C:\Users\j00496872\Desktop\Notes\raw_images\1568778286433.png)
+![1568778286433](D:\Notes\raw_images\1568778286433.png)
 
 数据集采集过程：
 
-![1568781766655](C:\Users\j00496872\Desktop\Notes\raw_images\1568781766655.png)
+![1568781766655](D:\Notes\raw_images\1568781766655.png)
 
 They are background clutter, dynamic background, deformation, appearance change, shape complexity, small instance, **occlusion**, **out of view**, motion blur, and fast motion. 实例会出现在视频中消失的现象，由于完全遮挡和离开视野。
 
 数据集统计分析：
 
-![1568781531684](C:\Users\j00496872\Desktop\Notes\raw_images\1568781531684.png)
+![1568781531684](D:\Notes\raw_images\1568781531684.png)
 
 
 
 #### 基线方法介绍
 
-![1568781470555](C:\Users\j00496872\Desktop\Notes\raw_images\1568781470555.png)
+![1568781470555](D:\Notes\raw_images\1568781470555.png)
 
 首先SISO包含两个分支(e.g. SIS and SOS) ，==融合这两个输出流来去除非显著目标实例==，得到像素级的实例分割Mask。在融合两个特征流之前，会进行mask的Refine工作，==采用boundary snapping method [3]==, 最后采用identity tracking 保证整个视频中实例标签的一致性。
 
@@ -112,7 +112,7 @@ They are background clutter, dynamic background, deformation, appearance change,
 
 SIS分支即语义实例分割, 可用的算法都是图片分割，因此针对视频可以每一帧都检测，==使用recurrent instance propagation算法==提高实例分割的准确率。 文中SIS分支采用了Mask R-CNN和MNC进行了对比实验，Mask-RCNN效果更优。
 
-![1568793163472](C:\Users\j00496872\Desktop\Notes\raw_images\1568793163472.png)
+![1568793163472](D:\Notes\raw_images\1568793163472.png)
 
 - Morg is the original model (we applied this frame-by-frame for videos), 
 - Mprop is the model incorporating our identity propagation module (this is just to simply exploit temporal information), 
@@ -128,17 +128,17 @@ SOS分支即显著性分割, 采用了3D卷积核进行视频分割，文中==�
 
 **计算过程：**首先，作者计算与Salient Object Mask IoU值最大的Instance，然后去除该Instance在Salient Object Mask的区域，然后依次计算其他Instance在Salient Mask中的区域，继续去除，直到所有的Instance都计算完成。如果，Instance与 Salient Mask 的IoU值小于0.1，作者认为该Instance其实没有被Present出来。
 
-![1568860709825](C:\Users\j00496872\Desktop\Notes\raw_images\1568860709825.png)
+![1568860709825](D:\Notes\raw_images\1568860709825.png)
 
 我们还通过对Frame中所有语义显著实例的置信度求平均值来计算每个Frame的置信度。Salient Instance的置信度是 IoU值 和 Classify 值的一个混合：此处设置$\beta^2=0.3$， 所以IoU的score值权重更重些。
 
-![1568861554701](C:\Users\j00496872\Desktop\Notes\raw_images\1568861554701.png)
+![1568861554701](D:\Notes\raw_images\1568861554701.png)
 
 #### Recurrent Instance Propagation
 
 问题：由于剧烈运动或者相机的运动，导致有些==Instance有严重的变形==。所以作者使用Recurrent Instance Propagation来将Instance recurrently propagated to 相邻的Frame。
 
-![1568861890070](C:\Users\j00496872\Desktop\Notes\raw_images\1568861890070.png)
+![1568861890070](D:\Notes\raw_images\1568861890070.png)
 
 图7: Recurrent Instance Propagation的一次迭代的流程图。语义实例从高 frame-confidences 的视频帧传播到 frame-confidences的视频帧。带有黄色边框的视频帧具有比相邻帧更高的frame-confidences。
 
@@ -152,7 +152,7 @@ SOS分支即显著性分割, 采用了3D卷积核进行视频分割，文中==�
 
 问题：如何维持视频中Instance的==Label的一致性问题==。短期的一致性，以及消失与重现的ReID问题。
 
-![1568862819672](C:\Users\j00496872\Desktop\Notes\raw_images\1568862819672.png)
+![1568862819672](D:\Notes\raw_images\1568862819672.png)
 
 图8:身份跟踪模块流程图。实例视频帧的Label通过Flow Wraping被传播到它的下一帧。当一个实例被遮挡时或者在框架之外,它会在下一个帧中进行一次ReID，通过在关键帧 k 中提取的特性。 
 
@@ -168,12 +168,12 @@ SOS分支即显著性分割, 采用了3D卷积核进行视频分割，文中==�
 
 评价标准：==语义区域相似度==和==语义轮廓相似度==. 假设 m 和 g 是预测Mask和ground truth Mask结果，那么语义区域相似度和语义轮廓相似度的计算方式如下：
 
-![1568865167938](C:\Users\j00496872\Desktop\Notes\raw_images\1568865167938.png)
+![1568865167938](D:\Notes\raw_images\1568865167938.png)
 
 注意：我们只比较具有相同的标识和相同的语义标签实例的相似性。
 
 各个Tricks的对比实验效果：
 
-![1568864197688](C:\Users\j00496872\Desktop\Notes\raw_images\1568864197688.png)
+![1568864197688](D:\Notes\raw_images\1568864197688.png)
 
 显然，identity tracking对结果的影响是非常大的，Recurrent Instance Propagation的效果也比较明显。

@@ -26,7 +26,7 @@ Qualitative results are presented on several tasks where paired training data do
 
 ### 介绍
 
-![1579159993263](C:\Users\j00496872\Desktop\Notes\raw_images\1579159993263.png)
+![1579159993263](D:\Notes\raw_images\1579159993263.png)
 
 图1: 给定任意两个无序的图像集合X和Y，我们的算法学习自动“翻译”一个图像从一个到另一个，反之亦然: (左)来自Flickr的莫奈画作和风景照片; (中)来自ImageNet的斑马和马; (右)Flickr上的夏天和冬天的优美照片。(下)示例应用程序: 使用名家的绘画作品集合，我们的方法学会了把自然的照片渲染成各自的风格。
 
@@ -67,11 +67,11 @@ Qualitative results are presented on several tasks where paired training data do
 
 
 
-![1579167670159](C:\Users\j00496872\Desktop\Notes\raw_images\1579167670159.png)
+![1579167670159](D:\Notes\raw_images\1579167670159.png)
 
 Figure 3: (a) Our model contains two mapping functions $G : X \to  Y$ and $F : Y \to X$ , and associated adversarial discriminators $D_Y$ and $D_X$.  $D_Y$ encourages G to translate X into outputs indistinguishable from domain Y , and vice versa for $D_X$ and F. To further regularize the mappings, we introduce two cycle consistency losses that capture the intuition that if we translate from one domain to the other and back again we should arrive at where we started: (b) forward cycle-consistency loss: $ x \to G(x) \to F(G(x)) \approx x$, and (c) backward cycle-consistency loss: $y \to F(y) \to G(F(y)) \approx y$
 
-![1579163465780](C:\Users\j00496872\Desktop\Notes\raw_images\1579163465780.png)
+![1579163465780](D:\Notes\raw_images\1579163465780.png)
 
 **CycleGAN与DCGAN的对比**
 
@@ -119,19 +119,19 @@ Second, to reduce model oscillation（振荡） [15], we follow Shrivastava et a
 
 在Cityscapes 上的 $label \leftrightarrow photos$ 任务：
 
-![1579233066584](C:\Users\j00496872\Desktop\Notes\raw_images\1579233066584.png)
+![1579233066584](D:\Notes\raw_images\1579233066584.png)
 
 在GoogleMap 上的 $photos \leftrightarrow maps$ 任务：
 
-![1579233533079](C:\Users\j00496872\Desktop\Notes\raw_images\1579233533079.png)
+![1579233533079](D:\Notes\raw_images\1579233533079.png)
 
-![1579233834533](C:\Users\j00496872\Desktop\Notes\raw_images\1579233834533.png)
+![1579233834533](D:\Notes\raw_images\1579233834533.png)
 
 **消融学习：**
 
-![1579233924582](C:\Users\j00496872\Desktop\Notes\raw_images\1579233924582.png)
+![1579233924582](D:\Notes\raw_images\1579233924582.png)
 
-![1579234136414](C:\Users\j00496872\Desktop\Notes\raw_images\1579234136414.png)
+![1579234136414](D:\Notes\raw_images\1579234136414.png)
 
 Figure 7: Different variants of our method for mapping $labels \leftrightarrow photos$ trained on cityscapes. From left to right: input, cycle-consistency loss alone, adversarial loss alone, GAN + forward cycle-consistency loss $(F(G(x)) \approx x)$, GAN + backward cycle-consistency loss $(G(F(y)) \approx y)$ , CycleGAN (our full method), and ground truth. 
 
@@ -143,9 +143,9 @@ Both ==Cycle alone and GAN +backward fail to produce images similar to the targe
 
 ### 失败的案例
 
-![1579243415862](C:\Users\j00496872\Desktop\Notes\raw_images\1579243415862.png)
+![1579243415862](D:\Notes\raw_images\1579243415862.png)
 
-![1579243439843](C:\Users\j00496872\Desktop\Notes\raw_images\1579243439843.png)
+![1579243439843](D:\Notes\raw_images\1579243439843.png)
 
 Figure 17: Typical failure cases of our method. Left: in the task of $dog \to cat transfiguration$, CycleGAN can only make minimal changes to the input. Right: CycleGAN also fails in this $horse \to zebra$ example as our model has not seen images of horseback riding during training.  
 

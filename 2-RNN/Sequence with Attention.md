@@ -10,7 +10,7 @@ Let’s continue looking at attention models at this high level of abstraction. 
 
 First, the encoder passes a lot more data to the decoder. Instead of passing the last hidden state of the encoding stage, ==the encoder passes *all* the hidden states to the decoder==:
 
-![1577956603049](C:\Users\j00496872\Desktop\Notes\raw_images\1577956603049.png)
+![1577956603049](D:\Notes\raw_images\1577956603049.png)
 
 Second, an attention decoder does an extra step before producing its output. In order to focus on the parts of the input that are relevant to this decoding time step, the decoder does the following:
 
@@ -30,7 +30,7 @@ Let us now bring the whole thing together in the following visualization and loo
 6. The output of the feedforward neural networks indicates the output word of this time step.
 7. Repeat for the next time steps
 
-![1577956827707](C:\Users\j00496872\Desktop\Notes\raw_images\1577956827707.png)
+![1577956827707](D:\Notes\raw_images\1577956827707.png)
 
 
 

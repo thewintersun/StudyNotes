@@ -20,28 +20,28 @@ DeepLab：Semantic image segmentation with deep convolutional nets and fully con
 
 **结构图:**
 
-![1562740663571](C:\Users\j00496872\Desktop\Notes\raw_images\1562740663571.png)
+![1562740663571](D:\Notes\raw_images\1562740663571.png)
 
 Fig. 1: Model Illustration. 主干网络采用VGG-16或者ResNet-101。使用空洞卷积，图像Stride由原来的32倍，减到8倍，然后采用二插值法，放大8倍到原图大小，之后采用全连接条件随机场改善结果。
 
 **实验：**
 
-![1562741281694](C:\Users\j00496872\Desktop\Notes\raw_images\1562741281694.png)
+![1562741281694](D:\Notes\raw_images\1562741281694.png)
 
 #### DeepLabV2
 
-![1562808221506](C:\Users\j00496872\Desktop\Notes\raw_images\1562808221506.png)
+![1562808221506](D:\Notes\raw_images\1562808221506.png)
 
 输入图片中的实例对象存在多种尺度，固定的网络设置使得网络的感受野固定，在对很小的实例对象和很大的实例对象表现出的效果不好。所以这个版本将网络空洞卷积最后一部分改为多通道（空洞率不同）并行即aspp，从而获得了多个尺度的感受野，增强了对multi scale的适应性。同时本文尝试用了更深的网络结构 resnet。
 
 
 #### DeepLabV3
 
-![1562808321308](C:\Users\j00496872\Desktop\Notes\raw_images\1562808321308.png)
+![1562808321308](D:\Notes\raw_images\1562808321308.png)
 
 在原来resnet基础上再添加 5,6,7三个block， 都为block4的副本。 个人认为这里在尝试更深的网络
 
-![1562808347937](C:\Users\j00496872\Desktop\Notes\raw_images\1562808347937.png)
+![1562808347937](D:\Notes\raw_images\1562808347937.png)
 
 这里是在改进aspp，当空洞率较大时原来3x3卷积的9个参数只剩下中间参数有效，其他参数作用于前面feature层的padding部分，为无效参数，所以在rate变大时，3x3卷积退化成1x1卷积，所以这里的aspp去掉了rate=24的分支，增加了1x1卷积分支。另外，为了获得全局信息，加入了image pooling分支，其实这个分支做的操作就是将block4输出的feature进行全局池化，然后再双线性插值到与其他分支一样的分辨率。最后将五个分支连接，再做1x1卷积（通道数变化）。v3不再使用条件随机场校正。 
 
@@ -59,12 +59,12 @@ deeplab v3+主要目的在于解决问题2, 可以使用空洞卷积替代更多
 
 解决方案：1、编解码器结构。2 Modified Aligned Xception。
 
-![1562808541846](C:\Users\j00496872\Desktop\Notes\raw_images\1562808541846.png)
+![1562808541846](D:\Notes\raw_images\1562808541846.png)
 
 在deeplab v3 基础上 加入解码器。 A是aspp结构， A的8倍的上采样可以看做是一个naïve的解码器。 B是编解码结构，集合了高层和底层的feature。 C就是本文采取的结构，Conv2（图中红色）的提取到结果和最后提取出的feature上采样4后融合。
 
 
-![1562808587604](C:\Users\j00496872\Desktop\Notes\raw_images\1562808587604.png)
+![1562808587604](D:\Notes\raw_images\1562808587604.png)
 
 解码器部分：先从低层级选一个feature，将低层级的feature用1x1的卷积进行通道压缩（原本为256通道，或者512通道），目的在于减少低层级的比重。作者认为编码器得到的feature具有更丰富的信息，所以编码器的feature应该有更高的比重。 这样做有利于训练。
 
@@ -74,7 +74,7 @@ deeplab v3+主要目的在于解决问题2, 可以使用空洞卷积替代更多
 
 Xception 主要采用了deepwish seperable convolution来替换原来的卷积层。简单的说就是这种结构能在更少参数更少计算量的情况下学到同样的信息。这边则是考虑将原来的resnet-101骨架网换成Xception。
 
-![1562808927738](C:\Users\j00496872\Desktop\Notes\raw_images\1562808927738.png)
+![1562808927738](D:\Notes\raw_images\1562808927738.png)
 
 红色部分为修改（1）更多层：重复8次改为16次（基于MSRA目标检测的工作）。（2）将原来简单的pool层改成了stride为2的deepwish seperable convolution。 （3）额外的RELU层和归一化操作添加在每个 3 *×* 3 depthwise convolution之后（原来只在1x1卷积之后）
 

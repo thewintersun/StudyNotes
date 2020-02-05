@@ -4,7 +4,7 @@
 
 下载地址： https://www.objects365.org/download.html
 
-![1570584786049](C:\Users\j00496872\Desktop\Notes\raw_images\1570584786049.png)
+![1570584786049](D:\Notes\raw_images\1570584786049.png)
 
 **Objects365** is a brand new dataset, designed to spur object detection research with a focus on diverse objects in the Wild.
 
@@ -33,4 +33,4 @@ Please send [us](mailto:info@objects365.com) an email to add or modify the conte
 
 [DIW_Leader_Board.phd](https://www.objects365.org/DIW_Leader_Board.pdf)
 
-![1570584565273](C:\Users\j00496872\Desktop\Notes\raw_images\1570584565273.png)
+![1570584565273](D:\Notes\raw_images\1570584565273.png)

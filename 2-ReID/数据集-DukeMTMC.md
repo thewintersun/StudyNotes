@@ -59,7 +59,7 @@ DukeMTMC-reID
 - "c2"代表这张图像来自第二个摄像头. 
 - "f0046985" 代表来自摄像头2的 第46985帧.
 
-![1562837803381](C:\Users\j00496872\Desktop\Notes\raw_images\1562837803381.png)
+![1562837803381](D:\Notes\raw_images\1562837803381.png)
 
 另外，DukeMTMC-reID还提供了==23种属性数据标注== DukeMTMC-attribute供下载。https://github.com/vana77/DukeMTMC-attribute
 
@@ -69,7 +69,7 @@ DukeMTMC-reID
 
 作者提供的Baseline成绩：
 
-![1562838682157](C:\Users\j00496872\Desktop\Notes\raw_images\1562838682157.png)
+![1562838682157](D:\Notes\raw_images\1562838682157.png)
 
 官网打不开，没有找到19年的LeaderBoard，有18年整理的的：
 

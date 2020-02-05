@@ -49,7 +49,7 @@ Resolution Specific Classifiers：
 
 This result empirically demonstrates that the filters learned on high-resolution images can be useful for recognizing low-resolution images as well. Therefore, instead of reducing the stride by 2, it is better to up-sample images 2 times and then fine-tune the network pre-trained on highresolution images.
 
-Since pre-training on ImageNet (or other larger classification datasets) is beneficial and filters learned on larger object instances help to classify smaller object instances, upsampling images and using the network pre-trained on high resolution images should be better than a specialized network for classifying small objects.![1565851841633](C:\Users\j00496872\Desktop\Notes\raw_images\1565851841633.png)
+Since pre-training on ImageNet (or other larger classification datasets) is beneficial and filters learned on larger object instances help to classify smaller object instances, upsampling images and using the network pre-trained on high resolution images should be better than a specialized network for classifying small objects.![1565851841633](D:\Notes\raw_images\1565851841633.png)
 
 Figure 6. SNIP training and inference is shown. Invalid RoIs which fall outside the specified range at each scale are shown in purple. These are discarded during training and inference. Each batch during training consists of images sampled from a particular scale. Invalid GT boxes are used to invalidate anchors in RPN. Detections from each scale are rescaled and combined using NMS.
 
@@ -63,11 +63,11 @@ Figure 6. SNIP training and inference is shown. Invalid RoIs which fall outside 
 
 - MST：在Object Detection中，为了提升测试针对不同scale物体的性能，大家一般会使用Multi-scale training/testing这样的测试时融合的技巧来提升结果。与SNIP做法最大的区别就在于Multi-scale的做法扩充了不同scale样本的数目，但是仍然要求CNN去fit所有scale的物体。==通过这样的一个对比实验，SNIP非常solid地证明了就算是数据相对充足的情况下，CNN仍然很难使用所有scale的物体。==个人猜测由于CNN中没有对于scale invariant的结构，CNN能检测不同scale的“假象”，更多是通过CNN来通过capacity来强行memorize不同scale的物体来达到的，这其实浪费了大量的capacity，而SNIP这样只学习同样的scale可以保障有限的capacity用于学习语义信息。
 
-  ![1565851490859](C:\Users\j00496872\Desktop\Notes\raw_images\1565851490859.png)
+  ![1565851490859](D:\Notes\raw_images\1565851490859.png)
 
 所以，其实SNIP做的事情是非常简单的：==在训练中，每次只回传那些大小在一个预先指定范围内的proposal的gradient，而忽略掉过大或者过小的proposal；== ==在测试中，建立大小不同的Image Pyramid，在每张图上都运行这样一个detector，同样只保留那些大小在指定范围之内的输出结果，最终在一起NMS。这样就可以保证网络总是在同样scale的物体上训练，也就是标题中Scale Normalized的意思。==
 
-![1565851788499](C:\Users\j00496872\Desktop\Notes\raw_images\1565851788499.png)
+![1565851788499](D:\Notes\raw_images\1565851788499.png)
 
 实验结果中可以看到，对比各种不同baseline，在COCO数据集上有稳定的3个点提升，这个结果可以说是非常显著了。
 
@@ -77,4 +77,4 @@ Figure 6. SNIP training and inference is shown. Invalid RoIs which fall outside 
 
 #### 实验结果
 
-![1565851911674](C:\Users\j00496872\Desktop\Notes\raw_images\1565851911674.png)
+![1565851911674](D:\Notes\raw_images\1565851911674.png)

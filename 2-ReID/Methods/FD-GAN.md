@@ -24,7 +24,7 @@ After learning pose-unrelated person features with pose guidance, ==no auxiliary
 
 #### 介绍
 
-![1567497961036](C:\Users\j00496872\Desktop\Notes\raw_images\1567497961036.png)
+![1567497961036](D:\Notes\raw_images\1567497961036.png)
 
 Figure 2: The Siamese structure of the proposed FD-GAN.  孪生网络结构
 
@@ -42,7 +42,7 @@ Figure 2: The Siamese structure of the proposed FD-GAN.  孪生网络结构
 
 With the adversarial losses, identity-irrelevant information, such as pose and background appearance, in the input image is mitigated from the visual features by the image encoder.
 
-![1567500624241](C:\Users\j00496872\Desktop\Notes\raw_images\1567500624241.png)
+![1567500624241](D:\Notes\raw_images\1567500624241.png)
 
 Figure 3: Network structures of (a) the generator G and the image encoder E, (b) the verification
 classifier V , (c) the identity discriminator $D_{id}$, (d) the pose discriminator $D_{pd}$.
@@ -61,7 +61,7 @@ classifier V , (c) the identity discriminator $D_{id}$, (d) the pose discriminat
 
 takes visual features of two person images as inputs and feeds them through element-wise subtraction, element-wise square, a batch normalization layer, a fully-connected layer, and finally a sigmoid non-linearity function to output the probability that the input image pair belongs to the same person. This classifier is trained with binary cross-entropy loss.
 
-![1567501776164](C:\Users\j00496872\Desktop\Notes\raw_images\1567501776164.png)
+![1567501776164](D:\Notes\raw_images\1567501776164.png)
 
 ##### c. 身份判别器
 
@@ -69,7 +69,7 @@ takes visual features of two person images as inputs and feeds them through elem
 
 原始图片和生成图片都通过一个ResNet，得到特征向量之后，进行和身份识别分类器一样结构的网络，得到最后二分类的结果。但要注意的是，这个ResNet和之前行人编码器E的ResNet并不共享权值，也就是完全两个网络,这里的ResNet更多是要区分真假图片, 而编码器的ResNet是为了得到Pose无关的身份信息，两个网络目的不同。
 
-![1567502047333](C:\Users\j00496872\Desktop\Notes\raw_images\1567502047333.png)
+![1567502047333](D:\Notes\raw_images\1567502047333.png)
 
 ##### d. 姿态判别器
 
@@ -79,7 +79,7 @@ takes visual features of two person images as inputs and feeds them through elem
 
 > Isola, P., Zhu, J.Y., Zhou, T., Efros, A.A.: Image-to-image translation with conditional adversarial networks. CVPR (2017)
 
-![1567502814423](C:\Users\j00496872\Desktop\Notes\raw_images\1567502814423.png)
+![1567502814423](D:\Notes\raw_images\1567502814423.png)
 
 深入思考：如果包含冗余的姿态信息，那在生成行人的假图片时，可能姿势就和开始要求的有差别，因为它会对最后生成的行人姿态产生一定干扰，这样的话姿态判别这里的loss就会高。于是在慢慢训练之后，伴随着这个loss的下降，encoder被影响的会慢慢忽略对姿态信息的提取。
 
@@ -97,7 +97,7 @@ this way, we can create many pose maps for the same pose and mitigate the pose o
 
 The responsibility of G is not only confusing the discriminators, but also generating images that are similar to the ground-truth images. However, ==the discriminators alone cannot guarantee generating human-perceivable images.== Therefore, a reconstruction loss is introduced to minimize the L1 differences between the generated image yk and its corresponding real image y0k
 
-![1567503235463](C:\Users\j00496872\Desktop\Notes\raw_images\1567503235463.png)
+![1567503235463](D:\Notes\raw_images\1567503235463.png)
 
 **Same-pose loss**
 
@@ -105,11 +105,11 @@ The responsibility of G is not only confusing the discriminators, but also gener
 
 We input the same person’s two different images and the same target pose to both branches of our Siamese network, if the conditioning visual features in the two branches are truly only identity-related, then the two generated images should be similar in appearance.
 
-![1567503376576](C:\Users\j00496872\Desktop\Notes\raw_images\1567503376576.png)
+![1567503376576](D:\Notes\raw_images\1567503376576.png)
 
 **最后Loss的组成**
 
-![1567503411960](C:\Users\j00496872\Desktop\Notes\raw_images\1567503411960.png)
+![1567503411960](D:\Notes\raw_images\1567503411960.png)
 
 
 
@@ -129,7 +129,7 @@ All images are resized to 256*128. The Gaussian bandwidth for obtaining pose lan
 
 ####  实验结果
 
-![1567502317708](C:\Users\j00496872\Desktop\Notes\raw_images\1567502317708.png) 
+![1567502317708](D:\Notes\raw_images\1567502317708.png) 
 
 影响效果的关键点：
 
@@ -139,4 +139,4 @@ All images are resized to 256*128. The Gaussian bandwidth for obtaining pose lan
 
 从结果可以看出，==没有判别器，效果会差很多==。
 
-![1567502465615](C:\Users\j00496872\Desktop\Notes\raw_images\1567502465615.png)
+![1567502465615](D:\Notes\raw_images\1567502465615.png)

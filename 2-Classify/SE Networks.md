@@ -26,7 +26,7 @@ SENet虽然引入了更多的操作，但是其带来的性能下降尚在可以
 
 一个SE Block的结构如图1所示
 
-![1577089400902](C:\Users\j00496872\Desktop\Notes\raw_images\1577089400902.png)
+![1577089400902](D:\Notes\raw_images\1577089400902.png)
 
 ​																		图1：SENet网络结构
 
@@ -38,7 +38,7 @@ SENet虽然引入了更多的操作，但是其带来的性能下降尚在可以
 
 Squeeze部分的作用是获得Feature Map $U$ 的每个通道的全局信息嵌入（特征向量）。==在SE block中，这一步通过VGG中引入的Global Average Pooling（GAP）实现的==。也就是通过求每个通道$c, c \in {1, C} $ 的Feature Map的平均值：
 
-![1577089877630](C:\Users\j00496872\Desktop\Notes\raw_images\1577089877630.png)
+![1577089877630](D:\Notes\raw_images\1577089877630.png)
 
 通过GAP得到的特征值是全局的（虽然比较粗糙）。另外, $z_c$ 也可以通过其它方法得到，要求只有一个，得到的特征向量具有全局性。
 
@@ -52,7 +52,7 @@ Excitation部分的作用是通过 ![[公式]](https://www.zhihu.com/equation?te
 
 根据上面的要求，SE blocks使用了==两层全连接构成的门机制（gate mechanism）==。门控单元s （即图1中 $1\times 1 \times C$ 的特征向量）的计算法方式表示为：
 
-![1577090452412](C:\Users\j00496872\Desktop\Notes\raw_images\1577090452412.png)
+![1577090452412](D:\Notes\raw_images\1577090452412.png)
 
 ==其中 $\delta$ 表示ReLU激活函数， $\sigma$  表示 sigmoid 激活函数==。 ![[公式]](https://www.zhihu.com/equation?tex=%5Cmathbf%7BW%7D_1+%5Cin+%5Cmathbb%7BR%7D%5E%7B%5Cfrac%7BC%7D%7Br%7D%5Ctimes+C%7D) , ![[公式]](https://www.zhihu.com/equation?tex=%5Cmathbf%7BW%7D_2+%5Cin+%5Cmathbb%7BR%7D%5E%7BC%5Ctimes%5Cfrac%7BC%7D%7Br%7D%7D) 分别是两个全连接层的权值矩阵。==$r$  则是中间层的隐层节点数，论文中指出这个值是16==。
 
@@ -71,7 +71,7 @@ $$
 
 SE blocks的特性使其能够非常容易的和目前主流的卷及结构结合，例如论文中给出的Inception结构和残差网络结构，如图2。结合方式也非常简单，只需要在Inception blocks或者Residual blocks之后直接接上SE blocks即可。
 
-![1577089809387](C:\Users\j00496872\Desktop\Notes\raw_images\1577089809387.png)																			图2：SE-Inception和SE-Resnet
+![1577089809387](D:\Notes\raw_images\1577089809387.png)																			图2：SE-Inception和SE-Resnet
 
 ### 2. SENet的复杂性分析
 

@@ -39,7 +39,7 @@ https://openreview.net/pdf?id=BJ-MRKkwG
 
 #### 介绍
 
-![1567237839123](C:\Users\j00496872\Desktop\Notes\raw_images\1567237839123.png)
+![1567237839123](D:\Notes\raw_images\1567237839123.png)
 
 Figure 1. Differentiable neural architecture search (DNAS) for ConvNet design. 
 
@@ -55,32 +55,32 @@ we ==construct a layer-wise search space with a fixed macro-architecture==, and 
 
 固定的宏观架构，构造了一个layer wise的搜索空间，定义了层数和每层的输入输出维度。
 
-![1567238684954](C:\Users\j00496872\Desktop\Notes\raw_images\1567238684954.png)
+![1567238684954](D:\Notes\raw_images\1567238684954.png)
 
-![1567238730016](C:\Users\j00496872\Desktop\Notes\raw_images\1567238730016.png)
+![1567238730016](D:\Notes\raw_images\1567238730016.png)
 
 ​					==每层都可以选不同的Block==
 
-![1567238876561](C:\Users\j00496872\Desktop\Notes\raw_images\1567238876561.png)
+![1567238876561](D:\Notes\raw_images\1567238876561.png)
 
 In summary, our overall search space contains 22 layers and each layer can choose from 9 candidate blocks from Table 2, so it contains $9^{22} \approx 10^{21} $ possible architectures.
 
 latency lookup table model (延时速查表模型)
 
-![1567239729915](C:\Users\j00496872\Desktop\Notes\raw_images\1567239729915.png)
+![1567239729915](D:\Notes\raw_images\1567239729915.png)
 
 过记录几百个在搜索空间中用到的操作的延时，我们能够简单地估算出整个搜索空间中全部 $10^{21}$个结构的运行时间。
 
 ##### Loss函数
 
-![1567239343225](C:\Users\j00496872\Desktop\Notes\raw_images\1567239343225.png)
+![1567239343225](D:\Notes\raw_images\1567239343225.png)
 
 ##### 搜索算法
 
-![img](C:\Users\j00496872\Desktop\Notes\raw_images\watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NvdWxtZWV0bGlhbmc=,size_16,color_FFFFFF,t_70)
+![img](D:\Notes\raw_images\watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NvdWxtZWV0bGlhbmc=,size_16,color_FFFFFF,t_70)
 
 #### 实验结果
 
-![1567239879071](C:\Users\j00496872\Desktop\Notes\raw_images\1567239879071.png)
+![1567239879071](D:\Notes\raw_images\1567239879071.png)
 
-![1567240004182](C:\Users\j00496872\Desktop\Notes\raw_images\1567240004182.png)
+![1567240004182](D:\Notes\raw_images\1567240004182.png)

@@ -28,11 +28,11 @@ After further working on this, I figured out that:
 2. The homework implementation is indeed missing the derivative of softmax for the backprop pass.
 3. The gradient of softmax with respect to its inputs is really the partial of each output with respect to each input:
 
-![1564367547938](C:\Users\j00496872\Desktop\Notes\raw_images\1564367547938.png)
+![1564367547938](D:\Notes\raw_images\1564367547938.png)
 
 So for the vector (gradient) form: 
 
-![1564367576307](C:\Users\j00496872\Desktop\Notes\raw_images\1564367576307.png)
+![1564367576307](D:\Notes\raw_images\1564367576307.png)
 
 Which in my vectorized numpy code is simply:
 

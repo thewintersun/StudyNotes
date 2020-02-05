@@ -14,7 +14,7 @@ A visual guide to Connectionist Temporal Classification, an algorithm used to tr
 
 How CTC collapsing works
 
-![1578382243512](C:\Users\j00496872\Desktop\Notes\raw_images\1578382243512.png)
+![1578382243512](D:\Notes\raw_images\1578382243512.png)
 
 ## Introduction
 
@@ -62,7 +62,7 @@ The CTC algorithm is *alignment-free* — it doesn’t require an alignment 
 
 To motivate the specific form of the CTC alignments, first consider a naive approach. Let’s use an example. Assume the input has length six and Y = [c, a, t]. One way to align X  and Y is to assign an output character to each input step and collapse repeats.
 
-![1578554791402](C:\Users\j00496872\Desktop\Notes\raw_images\1578554791402.png)
+![1578554791402](D:\Notes\raw_images\1578554791402.png)
 
 This approach has two problems.
 
@@ -84,7 +84,7 @@ If Y has two of the same character in a row, then a valid alignment must have an
 
 Let’s go back to the output [c, a, t] with an input of length six. Here are a few more examples of valid and invalid alignments.
 
-![1578554811283](C:\Users\j00496872\Desktop\Notes\raw_images\1578554811283.png)
+![1578554811283](D:\Notes\raw_images\1578554811283.png)
 
 The CTC alignments have a few notable properties. 
 
@@ -102,7 +102,7 @@ CTC算法的对齐方式有下列属性：
 
 The CTC alignments give us a natural way to go from probabilities at each time-step to the probability of an output sequence.
 
-![1578556089593](C:\Users\j00496872\Desktop\Notes\raw_images\1578556089593.png)
+![1578556089593](D:\Notes\raw_images\1578556089593.png)
 
 To be precise, the CTC objective for a single (X, Y) pair is:
 $$
@@ -119,7 +119,7 @@ If we aren’t careful, the CTC loss can be very expensive to compute. We could 
 
 Thankfully, ==we can compute the loss much faster with a dynamic programming algorithm. The key insight is that if two alignments have reached the same output at the same step, then we can merge them.==
 
-![1578557016437](C:\Users\j00496872\Desktop\Notes\raw_images\1578557016437.png)
+![1578557016437](D:\Notes\raw_images\1578557016437.png)
 
 Since we can have an *ϵ* before or after any token in Y, it’s easier to describe the algorithm using a sequence which includes them. We’ll work with the sequence 
 $$
@@ -162,7 +162,7 @@ The probability of the current character at input step t.
 
 Below is an example of the computation performed by the dynamic programming algorithm. Every valid alignment has a path in this graph.
 
-![1578623261590](C:\Users\j00496872\Desktop\Notes\raw_images\1578623261590.png)
+![1578623261590](D:\Notes\raw_images\1578623261590.png)
 
 假设我们现在有输入音频![X](https://math.jianshu.com/math?formula=X)对应的标定输出![Y](https://math.jianshu.com/math?formula=Y)为单词“ZOO”，为了方便解释下面动态规划的思想，现在每个字符之间还有字符串的首位插入空白占位符![\epsilon](https://math.jianshu.com/math?formula=%5Cepsilon)，得到下面结果
 
@@ -232,7 +232,7 @@ A regular beam search computes a new set of hypotheses at each input step. ==The
 
 We can modify the vanilla beam search to handle multiple alignments mapping to the same output.==In this case instead of keeping a list of alignments in the beam, we store the output prefixes after collapsing repeats and removing *ϵ* characters==. At each step of the search we accumulate scores for a given prefix based on all the alignments which map to it.
 
-![1578625801367](C:\Users\j00496872\Desktop\Notes\raw_images\1578625801367.png)
+![1578625801367](D:\Notes\raw_images\1578625801367.png)
 
 A proposed extension can map to two output prefixes if the character is a repeat. This is shown at T=3 in the figure above where ‘a’ is proposed as an extension to the prefix [a]. Both [a] and [a, a] are valid outputs for this proposed extension.
 
@@ -240,13 +240,13 @@ When we extend [a] to produce [a,a], we only want include the part of the previo
 
 Given this, we have to keep track of two probabilities for each prefix in the beam. The probability of all alignments which end in *ϵ* and the probability of all alignments which don’t end in *ϵ*. When we rank the hypotheses at each step before pruning the beam, we’ll use their combined scores.
 
-![1578625876460](C:\Users\j00496872\Desktop\Notes\raw_images\1578625876460.png)
+![1578625876460](D:\Notes\raw_images\1578625876460.png)
 
 The implementation of this algorithm doesn’t require much code, but it is dense and tricky to get right. Checkout this [gist](https://gist.github.com/awni/56369a90d03953e370f3964c826ed4b0) for an example implementation in Python.
 
 In some problems, such as speech recognition, incorporating a language model over the outputs significantly improves accuracy. We can include the language model as a factor in the inference problem.
 
-![1578625899445](C:\Users\j00496872\Desktop\Notes\raw_images\1578625899445.png)
+![1578625899445](D:\Notes\raw_images\1578625899445.png)
 
 The function L(Y) computes the length of Y in terms of the language model tokens and acts as a word insertion bonus. With a word-based language model L(Y) counts the number of words in Y. If we use a character-based language model then L(Y) counts the number of characters in Y. The language model scores are only included when a prefix is extended by a character (or word) and not at every step of the algorithm. This causes the search to favor shorter prefixes, as measured by L(Y), since they don’t include as many language model updates. The word insertion bonus helps with this. The parameters *α* and *β* are usually set by cross-validation.
 
@@ -304,7 +304,7 @@ p(X \mid Y)\; = \; \sum_{A \in \mathcal{A}} \; p(X, A \mid Y)
 $$
 To simplify notation, let’s remove the conditioning on Y, it will be present in every $p(\cdot)$.  With two assumptions we can write down the standard HMM.
 
-![1578640592717](C:\Users\j00496872\Desktop\Notes\raw_images\1578640592717.png)
+![1578640592717](D:\Notes\raw_images\1578640592717.png)
 
 The first assumption is the usual Markov property. The state  $a_t$ is conditionally independent of all historic states given the previous state $a_{t-1}$. The second is that the observation $x_t$ is conditionally independent of everything given the current state $a_t$.
 
@@ -335,7 +335,7 @@ The above equation is essentially the CTC loss function, assuming the set $\math
 
 In our case the transitions allowed by the model are strongly related to Y. We want the HMM to reflect this. One possible model could be a simple linear state transition diagram. The figure below shows this with the same alphabet as before and Y = [a, b]. Another commonly used model is the *Bakis* or left-right HMM. In this model any transition which proceeds from the left to the right is allowed.
 
-![1578712023780](C:\Users\j00496872\Desktop\Notes\raw_images\1578712023780.png)
+![1578712023780](D:\Notes\raw_images\1578712023780.png)
 
 In CTC we augment the alphabet with *ϵ* and the HMM model allows a subset of the left-right transitions. The CTC HMM has two start states and two accepting states.
 

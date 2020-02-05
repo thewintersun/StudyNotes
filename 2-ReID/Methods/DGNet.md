@@ -79,23 +79,23 @@ To further ==reduce the influence from intra-class variations==, a number of exi
 
 我们将空间中的编码特征作为“代码”（codes）。两个空间的定义如下表：
 
- ![1563939459436](C:\Users\j00496872\Desktop\Notes\raw_images\1563939459436.png)
+ ![1563939459436](D:\Notes\raw_images\1563939459436.png)
 
 外观空间是生成模块和判别模块共享的。
 
 图像生成方法：通过交换两个图像的外观或结构代码。
 
-![1563939718258](C:\Users\j00496872\Desktop\Notes\raw_images\1563939718258.png)
+![1563939718258](D:\Notes\raw_images\1563939718258.png)
 
 对于一个行人图像，通过保持其外观代码并结合不同的结构代码，我们可以生成多个图像，这些图像保留衣服和鞋子，但改变姿势，视点，背景等。
 
 #### 方法
 
-![1564627068149](C:\Users\j00496872\Desktop\Notes\raw_images\1564627196328.png)
+![1564627068149](D:\Notes\raw_images\1564627196328.png)
 
 图2：DG-Net的示意图。 （a）我们的判别性重新学习模块嵌入在生成中模块通过共享外观编码器Ea。==黑色虚线表示结构编码器Es的输入图像灰度化==，红线表示生成的图像在线反馈给Ea。 在生成中强制执行两个目标模块。
 
-![1564627276527](C:\Users\j00496872\Desktop\Notes\raw_images\1564627276527.png)
+![1564627276527](D:\Notes\raw_images\1564627276527.png)
 
 （b）通过相同的输入标识生成自身标识
 
@@ -105,35 +105,35 @@ To further ==reduce the influence from intra-class variations==, a number of exi
 
 首先，同一个人的同一张照片，$x_i$重构出$x_i^i$ ， 这种简单的自我重建任务可以作为生成器的重要正规化角色，Loss为简单的像素级L1Loss 。
 
-![1564713747457](C:\Users\j00496872\Desktop\Notes\raw_images\1564713747457.png)
+![1564713747457](D:\Notes\raw_images\1564713747457.png)
 
 同一个人的不同照片，Loss 也是像素级的L1 Loss。
 
-![1564714659313](C:\Users\j00496872\Desktop\Notes\raw_images\1564714659313.png)
+![1564714659313](D:\Notes\raw_images\1564714659313.png)
 
 同时，为了使不同图片的appearance code 相互分隔，采用身份鉴别Loss来区分不同的人，
 
-![1564714912900](C:\Users\j00496872\Desktop\Notes\raw_images\1564714912900.png)
+![1564714912900](D:\Notes\raw_images\1564714912900.png)
 
 where $p(y_i|x_i)$ is the predicted probability that $x_i$ belongs to the ground-truth class $y_i$ based on its appearance code.
 
-![1564627297970](C:\Users\j00496872\Desktop\Notes\raw_images\1564627297970.png)
+![1564627297970](D:\Notes\raw_images\1564627297970.png)
 
 （c）通过不同的输入标识生成交叉标识。
 
 不同身份的两张图片，进行重构，不能再用像素级的Loss，$x_i$与$x_j$ 对应的 $y_i \neq y_j$ 
 
-![1564715318501](C:\Users\j00496872\Desktop\Notes\raw_images\1564715318501.png)
+![1564715318501](D:\Notes\raw_images\1564715318501.png)
 
 同样身份鉴别Loss：
 
-![1564715628296](C:\Users\j00496872\Desktop\Notes\raw_images\1564715628296.png)
+![1564715628296](D:\Notes\raw_images\1564715628296.png)
 
 同时，引入GAN的判别器Loss：
 
-![1564715744760](C:\Users\j00496872\Desktop\Notes\raw_images\1564715744760.png)
+![1564715744760](D:\Notes\raw_images\1564715744760.png)
 
-![1564627317288](C:\Users\j00496872\Desktop\Notes\raw_images\1564627317288.png)
+![1564627317288](D:\Notes\raw_images\1564627317288.png)
 
 （d）为了更好地利用生成的数据，重新学习涉及主要特征学习和细粒度特征挖掘。
 
@@ -141,7 +141,7 @@ where $p(y_i|x_i)$ is the predicted probability that $x_i$ belongs to the ground
 
 **主要特征学习**
 
-对于交差ID的生成图像，我们==采用教师模型==，来给它打动态软标签。这个教师模型只是一个CNN结构的用来做身份分类的模型。==最小化预测的概率分布$p(x_i|j)$和教师模型推理的概率分布$q(x_i|j)$ 之间的KL散度==。 ![1564716551952](C:\Users\j00496872\Desktop\Notes\raw_images\1564716551952.png)
+对于交差ID的生成图像，我们==采用教师模型==，来给它打动态软标签。这个教师模型只是一个CNN结构的用来做身份分类的模型。==最小化预测的概率分布$p(x_i|j)$和教师模型推理的概率分布$q(x_i|j)$ 之间的KL散度==。 ![1564716551952](D:\Notes\raw_images\1564716551952.png)
 
 K是类别数。为什么要用教师模型：In comparison with the fixed one-hot label [31, 62] or static smoothing label [56], this dynamic soft labeling fits better in our case, as each synthetic image is formed by the visual contents from two real images.
 
@@ -155,7 +155,7 @@ K是类别数。为什么要用教师模型：In comparison with the fixed one-h
 
 为了模拟同一个人穿着不同的衣服，判别器模型，被强迫学习，细粒度的，身份相关的特征 (比如，头昏，帽子，包，身体大小，等等)，这些都是与衣服无关的。这里呢，我们把提供Structure Code的图片的ID作为，同一个Structure Code与不同Appearance Code生成图片的target。（这里与最开始的$L_{id}^c$ 相反 ）
 
-![1564717428153](C:\Users\j00496872\Desktop\Notes\raw_images\1564717428153.png)
+![1564717428153](D:\Notes\raw_images\1564717428153.png)
 
 总结：我们 treat 生成的图像 into two differenct perspectives:主要特征学习和细粒度特征挖掘，前者关注的地方structure-invariant clothing information和后者关注 appearance-invariant structurual clues。
 
@@ -179,7 +179,7 @@ Similar to the alternative updating policy for GANs, in the cross-identity gener
 
 ### 实验效果
 
-![1564627836240](C:\Users\j00496872\Desktop\Notes\raw_images\1564627836240.png)
+![1564627836240](D:\Notes\raw_images\1564627836240.png)
 
 Figure 3: Comparison of the generated and real images on Market-1501 across the different methods including LSGAN [29],PG2-GAN [28], FD-GAN [10], PN-GAN [31], and our approach. This figure is best viewed when zoom in. Please attention to both foreground and background of the images.
 
@@ -193,16 +193,16 @@ Figure 3: Comparison of the generated and real images on Market-1501 across the 
 
 **对比实验，去除online-feeding, 去除teacher model supervision**
 
-![1564728973454](C:\Users\j00496872\Desktop\Notes\raw_images\1564728973454.png)
+![1564728973454](D:\Notes\raw_images\1564728973454.png)
 
 GAN生成效果评价：
 
-![1564729278963](C:\Users\j00496872\Desktop\Notes\raw_images\1564729278963.png)
+![1564729278963](D:\Notes\raw_images\1564729278963.png)
 
 不同数据集实验结果：
 
 ![1564729233034](C:\Users\j00496872\AppData\Roaming\Typora\typora-user-images\1564729233034.png)
 
-![1564729343816](C:\Users\j00496872\Desktop\Notes\raw_images\1564729343816.png)
+![1564729343816](D:\Notes\raw_images\1564729343816.png)
 
-![1564729359473](C:\Users\j00496872\Desktop\Notes\raw_images\1564729359473.png)
+![1564729359473](D:\Notes\raw_images\1564729359473.png)

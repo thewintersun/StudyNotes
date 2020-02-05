@@ -13,11 +13,11 @@
 
 下图是我们的方法和传统 RPN 的性能和速度对比，可以看到要显著优于传统 RPN。
 
-![1565862632296](C:\Users\j00496872\Desktop\Notes\raw_images\1565862632296.png)
+![1565862632296](D:\Notes\raw_images\1565862632296.png)
 
 下面是应用在不同检测方法上的结果，backbone 均为 ResNet-50-FPN。
 
-![1565862644627](C:\Users\j00496872\Desktop\Notes\raw_images\1565862644627.png)
+![1565862644627](D:\Notes\raw_images\1565862644627.png)
 
 #### 背景
 Anchor 是物体检测中的一个重要概念，通常是人为设计的一组框，作为分类（classification）和框回归（bounding box regression）的基准框。无论是单阶段（single-stage）检测器还是两阶段（two-stage）检测器，都广泛地使用了 anchor。例如，两阶段检测器的第一阶段通常采用 RPN 生成 proposal，是对 anchor 进行分类和回归的过程，即 anchor -> proposal -> detection bbox；大部分单阶段检测器是直接对 anchor 进行分类和回归，也就是 anchor -> detection bbox。
@@ -38,7 +38,7 @@ Anchor 的概率分布被分解为两个条件概率分布，也就是给定图�
 
 根据上面的公式，anchor 的生成过程可以分解为两个步骤，anchor 位置预测和形状预测。在这个看起来很简单的 formulation 上，我们走过一些弯路，讨论过一些奇奇怪怪的方法，最后发现大道至简。
 
-![1565862767454](C:\Users\j00496872\Desktop\Notes\raw_images\1565862767454.png) 
+![1565862767454](D:\Notes\raw_images\1565862767454.png) 
 
 #### 方法
 
@@ -60,7 +60,7 @@ Anchor 的概率分布被分解为两个条件概率分布，也就是给定图�
 
 #### 生成 anchor
 在得到 anchor 位置和中心点的预测之后，我们便可以生成 anchor 了，如下图所示。这时的 anchor 是稀疏而且每个位置不一样的。采用生成的 anchor 取代 sliding window，AR (Average Recall) 已经可以超过普通 RPN 4 个点了，代价仅仅是增加两个 1x1 conv。
-![1565862897375](C:\Users\j00496872\Desktop\Notes\raw_images\1565862897375.png)
+![1565862897375](D:\Notes\raw_images\1565862897375.png)
 
 #### Feature Adaption
 故事本可以就此结束，我们用生成的 anchor 和之前的特征图来进行 anchor 的分类和回归，涨点美滋滋。但是我们发现一个不合理的地方，大家都是同一层 conv 的特征，凭啥我就可以比别人优秀一些，代表一个又长又大的 anchor，你就只能代表一个小小的 anchor。
@@ -71,18 +71,18 @@ Anchor 的概率分布被分解为两个条件概率分布，也就是给定图�
 
 通过这样的操作，达到了让 feature 的有效范围和 anchor 形状更加接近的目的，同一个 conv 的不同位置也可以代表不同形状大小的 anchor 了。从表格可以看到，Feature Adaption 还是很给力的，带来了接近 5 个点的提升。
 
-![1565862921608](C:\Users\j00496872\Desktop\Notes\raw_images\1565862921608.png) 
+![1565862921608](D:\Notes\raw_images\1565862921608.png) 
 
 #### 高质量 proposal 的正确打开方式
 故事到这里其实也可以结束了，但是我们遇到了和之前一些改进 proposal 的 paper 里相同的问题，那就是 proposal 质量提升很多（如下图），但是在 detector 上性能提升比较有限。在不同的检测模型上，使用 Guided Anchoring 可以提升 1 个点左右。明明有很好的 proposal，但是 mAP 却没有涨很多，让人十分难受。
 
-![1565862953351](C:\Users\j00496872\Desktop\Notes\raw_images\1565862953351.png) 
+![1565862953351](D:\Notes\raw_images\1565862953351.png) 
 
 经过一番探究，我们发现了以下两点：1. 减少 proposal 数量，2. 增大训练时正样本的 IoU 阈值（这个更重要）。既然在 top300 里面已经有了很多高 IoU 的 proposal，那么何必用 1000 个框来训练和测试，既然 proposal 们都这么优秀，那么让 IoU 标准严格一些也未尝不可。
 
 这个正确的打开方式基本是 Jiaqi 独立调出来的，让 performance 一下好看了很多。通过这两个改进，在 Faster R-CNN 上的涨点瞬间提升到了 2.7 个点（没有加任何 trick），其他方法上也有大幅提升。
 
-![1565862982527](C:\Users\j00496872\Desktop\Notes\raw_images\1565862982527.png) 
+![1565862982527](D:\Notes\raw_images\1565862982527.png) 
 
 #### 谈谈 anchor 设计准则
 我们在 paper 里提到了==anchor 设计的两个准则，alignment（中心对齐） 和 consistency（特征一致）==。其中 alignment 是指 anchor 的中心点要和 feature 的位置对齐，consistency 是指 anchor 的特征要和形状匹配。

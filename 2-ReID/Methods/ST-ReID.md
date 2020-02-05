@@ -28,7 +28,7 @@ our st-ReID method achieves rank-1 accuracy of 98.1% on Market-1501 and 94.4% on
 
 三部分组成，visual feature stream, a spatial-temporal stream, and a joint metric sub-module。
 
-![1566289755115](C:\Users\j00496872\Desktop\Notes\raw_images\1566289755115.png)
+![1566289755115](D:\Notes\raw_images\1566289755115.png)
 
 Figure 3: The proposed two-stream architecture. It consists of three sub-modules, i.e., a visual feature stream, a spatial-temporal stream, and a joint metric sub-module. (Best viewed in color)
 
@@ -97,7 +97,7 @@ According to Eqn. (1) and (3), we can see that $s \in (-1, 1)$  is shrunk by the
 
 实验数据集就是market和duke，没有常见的cuhk03，原因在TFusion中也说过，只有这两个数据集和grid数据集有时间数据。实验效果还是挺好的，多模态方法好好调参完虐纯视觉方法。实验中也和SOTA方法做了对比，包括我们的TFusion，当时做了一个source和target都一样的实验，但是还是用无监督的时空估计方法，所以准确率还是AAAI这篇比较高。
 
-![1566373919447](C:\Users\j00496872\Desktop\Notes\raw_images\1566373919447.png)
+![1566373919447](D:\Notes\raw_images\1566373919447.png)
 
 然而他们说:  Therefore, TFusion-sup actually does not investigate how to estimate the spatial-temporal probability distribution and how to model the joint probability of the visual similarity and the spatial-temporal probability distribution.
 

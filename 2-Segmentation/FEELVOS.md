@@ -36,7 +36,7 @@ FEELVOS 采用 learned embedding和最邻近匹配,但我们用这个机制作�
 
 通过使用最邻近匹配只作为一个软线索, 网络可以从部分不正确的nearest neighbor assignments中恢复过来, 并仍然产生准确的分割。在没有 fine-tuning 情况下,我们实现了多目标分割的 state of the art 。
 
-![1569059249894](C:\Users\j00496872\Desktop\Notes\raw_images\1569059249894.png)
+![1569059249894](D:\Notes\raw_images\1569059249894.png)
 
 图1. FEELVOS 方法的概述。
 
@@ -89,7 +89,7 @@ Embedding的想法来源于：属于相同对象实例的像素(在同一帧或�
 
 For each pixel p, we extract a semantic embedding vector $e_p$ in the learned embeddings pace. Similar to Fathi et al. [12], 定义两个像素 p 和 q 对应的 embedding vectors $e_p$ and $e_q$的距离通过公式: 
 
-![1569401480454](C:\Users\j00496872\Desktop\Notes\raw_images\1569401480454.png)
+![1569401480454](D:\Notes\raw_images\1569401480454.png)
 
 **Global Matching**
 
@@ -97,9 +97,9 @@ For each pixel p, we extract a semantic embedding vector $e_p$ in the learned em
 
 计算全局匹配距离地图 $G_{t,o}(p)$ ，对于每个ground truth 对象o， 当前时间t的视频帧的每个像素p 与 该对象在第一帧中的像素集合$P_{1,o}$的最邻近的距离：
 
-![1569401606278](C:\Users\j00496872\Desktop\Notes\raw_images\1569401606278.png)
+![1569401606278](D:\Notes\raw_images\1569401606278.png)
 
-![1569403094135](C:\Users\j00496872\Desktop\Notes\raw_images\1569403094135.png)
+![1569403094135](D:\Notes\raw_images\1569403094135.png)
 
 图2。Global and local matching。对于给定的对象(在本例中为duck)，global matching 将当前帧的embedding 向量与属于该对象的第一帧的embedding 向量匹配，并生成distance map。深色表示距离较小。==注意，全局distance map是有噪声的，并且在水中包含假阳性。==Local matching用于将当前帧embedding 匹配到属于对象的前一帧的embedding 。对于local matching，一个像素的匹配只允许在它周围的局部窗口中进行。
 
@@ -107,13 +107,13 @@ For each pixel p, we extract a semantic embedding vector $e_p$ in the learned em
 
 与前一帧的Embedding的distance map 计算方法：
 
-![1569403896651](C:\Users\j00496872\Desktop\Notes\raw_images\1569403896651.png)
+![1569403896651](D:\Notes\raw_images\1569403896651.png)
 
 $P_{t-1,o}$ 是t-1时间的预测结果，所以对于对象o, 它可能是不存在的，这时候，就设置距离为1.
 
 对于第一帧的Global matching，我们计算当前帧所有像素和第一帧的Object o的距离，但是对于前一帧，我们没有必要这么计算，因为当前帧和前一帧的移动距离并不大，所以只计算前一帧的像素p的邻近像素点集合的距离：
 
-![1569404404448](C:\Users\j00496872\Desktop\Notes\raw_images\1569404404448.png)
+![1569404404448](D:\Notes\raw_images\1569404404448.png)
 
 邻近点的计算：
 
@@ -127,7 +127,7 @@ Inspired by FlowNet [11], for pixel p of frame t we ==only consider pixels q of 
 
 为了系统有效地处理多个对象，我们提出了一个动态分割头，该分割头对每个具有共享权值的对象进行一次动态实例化。
 
-![1569467710944](C:\Users\j00496872\Desktop\Notes\raw_images\1569467710944.png)
+![1569467710944](D:\Notes\raw_images\1569467710944.png)
 
 图3. 动态分割头用于系统地处理多个对象。轻量级分割头为视频中的每个对象动态实例化一次，并为每个对象logits 生成的一维 feature map 。然后将每个对象的 logits 堆叠在一起并应用 softmax 。采用标准交叉熵损失训练动态分割头。
 
@@ -147,15 +147,15 @@ Inspired by FlowNet [11], for pixel p of frame t we ==only consider pixels q of 
 
 We extract embedding vectors of dimension 100. 
 
-![1569472478575](C:\Users\j00496872\Desktop\Notes\raw_images\1569472478575.png)
+![1569472478575](D:\Notes\raw_images\1569472478575.png)
 
-![1569472579318](C:\Users\j00496872\Desktop\Notes\raw_images\1569472579318.png)
+![1569472579318](D:\Notes\raw_images\1569472579318.png)
 
 **Ablation Study**
 
-![1569472690463](C:\Users\j00496872\Desktop\Notes\raw_images\1569472690463.png)
+![1569472690463](D:\Notes\raw_images\1569472690463.png)
 
 实验样例
 
-![1569472857642](C:\Users\j00496872\Desktop\Notes\raw_images\1569472857642.png)
+![1569472857642](D:\Notes\raw_images\1569472857642.png)
 

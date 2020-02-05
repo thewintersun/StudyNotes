@@ -18,7 +18,7 @@ A diverse street-level imagery dataset with pixel‑accurate and instance‑spec
 - Global reach, covering 6 continents
 - Variety of weather, season, time of day, camera, and viewpoint
 
-![1572859646016](C:\Users\j00496872\Desktop\Notes\raw_images\1572859646016.png)
+![1572859646016](D:\Notes\raw_images\1572859646016.png)
 
-![1572859670149](C:\Users\j00496872\Desktop\Notes\raw_images\1572859670149.png)
+![1572859670149](D:\Notes\raw_images\1572859670149.png)
 

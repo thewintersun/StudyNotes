@@ -35,7 +35,7 @@ In this work, we carefully revisit the standard training practice of detectors, 
 - 提取出的不同 level 的特征是怎么才能真正地充分利用？
 - 目前设计的损失函数能不能引导目标检测器更好地收敛？
 
-![1565861170709](C:\Users\j00496872\Desktop\Notes\raw_images\1565861170709.png)
+![1565861170709](D:\Notes\raw_images\1565861170709.png)
 
 **1. IoU-balanced sampling**
 
@@ -57,14 +57,14 @@ FPN 结构中含有多层特征，低层特征分辨率高往往学习到的是�
 
 首先我们看 Smooth L1 Loss：
 
-![1565861267621](C:\Users\j00496872\Desktop\Notes\raw_images\1565861267621.png)
+![1565861267621](D:\Notes\raw_images\1565861267621.png)
 
 作者解决方法：Balanced L1 Loss, clip the large gradients produced by outliers with a maximum value of 1.0。
 
-![1565861254654](C:\Users\j00496872\Desktop\Notes\raw_images\1565861254654.png)
+![1565861254654](D:\Notes\raw_images\1565861254654.png)
 
 根据梯度反求出 Lb(x) 表达式：
 
-![1565861235509](C:\Users\j00496872\Desktop\Notes\raw_images\1565861235509.png)
+![1565861235509](D:\Notes\raw_images\1565861235509.png)
 
 实验结果：三个改进加起来相对FPN 结构Faster RCNN有2+个点的提升。

@@ -29,11 +29,11 @@
 
 对于这样一个两难问题，作者的解决思路在图中的式中也得到了直观体现：该思路的核心就是一种全新的loss，叫做Repulsion loss，其包括两个部分：==前者是使得预测框更接近目标框，后者是使得预测框要尽可能远离周围的目标框==。
 
-![1565694254644](C:\Users\j00496872\Desktop\Notes\raw_images\1565694254644.png)
+![1565694254644](D:\Notes\raw_images\1565694254644.png)
 
 作者首先研究了现有公开数据集CityPersons[1]中遮挡出现的情况以及这种情况对检测器性能的影响。在CityPersons验证集中，共有3157个行人标注框，其中48.8%的行人相互遮挡的IOU高于0.1，26.4%的行人相互遮挡的IOU高于0.3，可见这种遮挡情况的出现是极其普遍的。那么遮挡到底会给检测器带来什么样的影响？作者训练了Faster R-CNN检测器作为baseline对这个问题进行了回答，如图2所示：评估指标选用行人检测中常用的Miss Rate (MR，越低越好)，其中Reasonable-occ代表所有遮挡情况，Reasonable-crowd代表所有遮挡情况中自遮挡的部分，图中列出了在平均20，100，500个虚检情况下的missed detection，==从图中可以发现遮挡占据了近60%的席位（蓝色+橙色），而在这60%席位中，自遮挡又占据了近60%==。综上，图2足以说明：遮挡是影响行人检测性能的一个非常重要的因素，而行人之间的自遮挡更是重中之重。
 
-![1565694392311](C:\Users\j00496872\Desktop\Notes\raw_images\1565694392311.png)
+![1565694392311](D:\Notes\raw_images\1565694392311.png)
 
 
 
@@ -41,13 +41,13 @@
 
 针对以上分析，作者决定从loss层面来解决行人之间的自遮挡问题，首先我们直观感受下本文方法RepGT的有效性，如下图所示：图（a）展示了RepGT==对漏检的有效性==，可以发现在detection score较高时，RepGT的漏检更少，图（b）展示了RepGT==对自遮挡情况下的虚检的有效性==，可以发现RepGT的虚检中自遮挡所导致的虚检比例更低。
 
-![1565694442692](C:\Users\j00496872\Desktop\Notes\raw_images\1565694442692.png)
+![1565694442692](D:\Notes\raw_images\1565694442692.png)
 
-![1565694505196](C:\Users\j00496872\Desktop\Notes\raw_images\1565694505196.png)
+![1565694505196](D:\Notes\raw_images\1565694505196.png)
 
 上图实验所展示的效果验证了本文的一大贡献：Repulsion loss，其包括三个子模块：
 
-![1565694591627](C:\Users\j00496872\Desktop\Notes\raw_images\1565694591627.png)
+![1565694591627](D:\Notes\raw_images\1565694591627.png)
 
 - 其中第一个子模块LAttr是使得预测框和匹配上的目标框尽可能接近；
 - 第二个子模块LRepGT是使得预测框和周围的目标框尽可能远离；
@@ -57,22 +57,22 @@
 
 LAttr采用通用检测框架中的回归loss，可以采用欧式距离、SmoothL1距离以及IoU距离，为了使得和其他算法具有可比性，本文这里采用的是SmoothL1距离：
 
-![1565694642653](C:\Users\j00496872\Desktop\Notes\raw_images\1565694642653.png)
+![1565694642653](D:\Notes\raw_images\1565694642653.png)
 
 ##### Repulsion Term (RepGT)
 
 因为LRepGT是==使得预测框P和周围的目标框G尽可能远离==，这里的周围的目标框是除了匹配上的目标框以外的IoU最大的目标框，也即
 
-![1565694758811](C:\Users\j00496872\Desktop\Notes\raw_images\1565694758811.png)
+![1565694758811](D:\Notes\raw_images\1565694758811.png)
 
 ，受启发于IoU Loss[2]，它们之间的距离定义为Intersection over Ground-truth (IoG)，也即
 
-![1565694799805](C:\Users\j00496872\Desktop\Notes\raw_images\1565694799805.png)
+![1565694799805](D:\Notes\raw_images\1565694799805.png)
 
 
 ，则RepGT loss定义为：
 
-![1565694831022](C:\Users\j00496872\Desktop\Notes\raw_images\1565694831022.png)
+![1565694831022](D:\Notes\raw_images\1565694831022.png)
 
 
 从式（4）中可以发现==当预测框P和周围的目标框G的IoG越大，则产生的loss也会越大，因此可以有效防止预测框偏移到周围的目标框上==。此外，式（5）中的sigma是一个调整LRepGT敏感程度的超参数，文中图5给出了验证性实验，这里不再赘述，详情可见论文。
@@ -83,7 +83,7 @@ LAttr采用通用检测框架中的回归loss，可以采用欧式距离、Smoot
 
 因为LRepBox是==使得预测框Pi和周围的其他预测框Pj尽可能远离==，Pi和Pj分别匹配上不同的目标框，它们之间的距离采用的是IoU，则RepBox loss定义为：
 
-![1565694922944](C:\Users\j00496872\Desktop\Notes\raw_images\1565694922944.png)
+![1565694922944](D:\Notes\raw_images\1565694922944.png)
 
 从式（6）中可以发现当预测框Pi和周围的其他预测框Pj的IoU越大，则产生的loss也会越大，因此可以有效防止两个预测框因为靠的太近而被NMS过滤掉，进而减少漏检。
 
@@ -99,16 +99,16 @@ LAttr采用通用检测框架中的回归loss，可以采用欧式距离、Smoot
 
 首先我们看下在CityPersons验证集上的剥离实验（如下，表3）：
 
-![1565695097914](C:\Users\j00496872\Desktop\Notes\raw_images\1565695097914.png)
+![1565695097914](D:\Notes\raw_images\1565695097914.png)
 
 
 可以发现加上RepGT loss和RepBox loss，都可以给baseline带来较为明显的性能提升，尤其是在遮挡情况较为严重的情况下（Heave occlusion）的效果最为显著。本文的两种loss共同将baseline在Reasonable设定下的Miss Rate从14.6减少到了13.2。最后将图像扩大1.5倍得到了最佳的10.9的表现。
 
-![1565695170895](C:\Users\j00496872\Desktop\Notes\raw_images\1565695170895.png)
+![1565695170895](D:\Notes\raw_images\1565695170895.png)
 
 同样在Caltech测试集上的表现也是state-of-the-art（如下，表4和图7）：在Caltech上再一次证明了本文方法对Heave occlusion的有效性。在Reasonable设定下取得了4.0的表现，据笔者所知，在目前已公开发表的实验结果中是最好的了。
 
-![1565695212843](C:\Users\j00496872\Desktop\Notes\raw_images\1565695212843.png)
+![1565695212843](D:\Notes\raw_images\1565695212843.png)
 
 #### 总结展望
 

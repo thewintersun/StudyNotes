@@ -119,7 +119,7 @@ Weight standarization示意图
 
 重点在于对每个卷积核进行一个归一化。有 ![[公式]](https://www.zhihu.com/equation?tex=x) 个卷积核，即输出 ![[公式]](https://www.zhihu.com/equation?tex=x) 个channel，就会进行 ![[公式]](https://www.zhihu.com/equation?tex=x) 次归一化，产生 ![[公式]](https://www.zhihu.com/equation?tex=x) 个 ![[公式]](https://www.zhihu.com/equation?tex=%5Cmu) ， ![[公式]](https://www.zhihu.com/equation?tex=%5Cbeta) （注意原论文公式(4)求 ![[公式]](https://www.zhihu.com/equation?tex=%5Csigma+W_%7Bi%2C.%7D) 时有一个笔误，把求和符号下面的 ![[公式]](https://www.zhihu.com/equation?tex=j) 写成了 ![[公式]](https://www.zhihu.com/equation?tex=i) ）。
 
-![1579053896259](C:\Users\j00496872\Desktop\Notes\raw_images\1579053896259.png)
+![1579053896259](D:\Notes\raw_images\1579053896259.png)
 
 其中 ![[公式]](https://www.zhihu.com/equation?tex=I%3DC_%7Bin%7D%5Ctimes+Kernel%5C_Size) 。对weight进行标准化后得到卷积结果，此时再加上GN或者BN，就逆天了。。。
 
@@ -137,7 +137,7 @@ Weight standarization示意图
 
 在这篇文章中，作者也是利用同样的思路，证明了经过WS的loss能够比没用WS的loss继续降低这个C值，从而验证WS对于提升模型性能的作用。
 
-![1579053957835](C:\Users\j00496872\Desktop\Notes\raw_images\1579053957835.png)
+![1579053957835](D:\Notes\raw_images\1579053957835.png)
 
 经过Weight standarization的loss能够比原先的loss继续降低L约束的C值。
 

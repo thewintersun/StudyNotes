@@ -24,19 +24,19 @@
 
 ##### Channel Attention Module
 
-![1567568735708](C:\Users\j00496872\Desktop\Notes\raw_images\1567568735708.png)
+![1567568735708](D:\Notes\raw_images\1567568735708.png)
 
 ​	基于Attention机制的Channel Attention 模块，Channel affinity matrix X 的大小为 C*C， X 矩阵代表的是Channel i 对 Channel j的影响是多大。
 
-![1567669997156](C:\Users\j00496872\Desktop\Notes\raw_images\1567669997156.png)
+![1567669997156](D:\Notes\raw_images\1567669997156.png)
 
 最后CAM模型的输出E定义为：
 
-![1567670097141](C:\Users\j00496872\Desktop\Notes\raw_images\1567670097141.png)
+![1567670097141](D:\Notes\raw_images\1567670097141.png)
 
 ##### Position Attention Module
 
-![1567568770889](C:\Users\j00496872\Desktop\Notes\raw_images\1567568770889.png)
+![1567568770889](D:\Notes\raw_images\1567568770889.png)
 
 这个模块PAM的计算方法，和CAM的区别在于，首先都会先做 [卷积-BN-ReLU ] 模块，然后再做reshape操作。然后Pixel affinity matrix S 的大小为NxN，N=WxH, 是关于像素的转换矩阵。与上面的 X 矩阵大小不同。
 
@@ -60,17 +60,17 @@ Many existing soft regularizers [38, 41] restrict the Gram matrix of F to be clo
 
 方法：对于一个特征图 M (CxHxW) 首先Reshape到 CxN  大小，N=HxW。 
 
-![1567674311041](C:\Users\j00496872\Desktop\Notes\raw_images\1567674311041.png)
+![1567674311041](D:\Notes\raw_images\1567674311041.png)
 
 ##### 整体网络结构
 
-![1567568839491](C:\Users\j00496872\Desktop\Notes\raw_images\1567568839491.png)
+![1567568839491](D:\Notes\raw_images\1567568839491.png)
 
 Figure 4. Architecture of ABD-Net: O.W. is applied on all ResNet layers. O.F. is applied after CAM on res_conv_2 and after res_conv_5 in the Attentive Branch. l The feature vectors from both attentive and global branches are concatenated as the final feature embedding.
 
 损失函数包含： a cross entropy loss, a hard mining triplet loss, and orthogonal constraints on feature (O.F.) and on weights (O.W.)
 
-![1567672333825](C:\Users\j00496872\Desktop\Notes\raw_images\1567672333825.png)
+![1567672333825](D:\Notes\raw_images\1567672333825.png)
 
 #### 实验结果
 
@@ -78,12 +78,12 @@ Figure 4. Architecture of ABD-Net: O.W. is applied on all ResNet layers. O.F. is
 
 训练过程分两步，首先，我们将Backbone权值冻结，只训练约简层、分类器和所有注意模块10个Epochs，只应用交叉熵损失和三重损失。然后，所有层都被释放用于另外60个Epochs的训练，并应用全部损失函数。
 
-![1567673924801](C:\Users\j00496872\Desktop\Notes\raw_images\1567673924801.png)
+![1567673924801](D:\Notes\raw_images\1567673924801.png)
 
 效果图：
 
-![1567674114450](C:\Users\j00496872\Desktop\Notes\raw_images\1567674114450.png)
+![1567674114450](D:\Notes\raw_images\1567674114450.png)
 
 目前最佳方法对比:
 
-![1567674021490](C:\Users\j00496872\Desktop\Notes\raw_images\1567674021490.png)
+![1567674021490](D:\Notes\raw_images\1567674021490.png)

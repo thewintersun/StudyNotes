@@ -2,7 +2,7 @@
 
 地址:http://www.vision.caltech.edu/Image_Datasets/CaltechPedestrians/
 
-![1565168166918](C:\Users\j00496872\Desktop\Notes\raw_images\1565168166918.png)
+![1565168166918](D:\Notes\raw_images\1565168166918.png)
 
 格式转换方法：
 

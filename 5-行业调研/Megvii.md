@@ -6,19 +6,19 @@
 
 #### 技术能力
 
-![1570617346309](C:\Users\j00496872\Desktop\Notes\raw_images\1570617346309.png)
+![1570617346309](D:\Notes\raw_images\1570617346309.png)
 
 
 
 #### SDK产品
 
-![1570617385609](C:\Users\j00496872\Desktop\Notes\raw_images\1570617385609.png)
+![1570617385609](D:\Notes\raw_images\1570617385609.png)
 
 
 
 **稠密关键点**
 
-![1570617554786](C:\Users\j00496872\Desktop\Notes\raw_images\1570617554786.png)
+![1570617554786](D:\Notes\raw_images\1570617554786.png)
 
 
 
@@ -28,10 +28,10 @@
 
 支持各类票据、文书、卡证的识别，准确率高达95%
 
-![1570617644262](C:\Users\j00496872\Desktop\Notes\raw_images\1570617644262.png)
+![1570617644262](D:\Notes\raw_images\1570617644262.png)
 
 
 
-![1570617696983](C:\Users\j00496872\Desktop\Notes\raw_images\1570617696983.png)
+![1570617696983](D:\Notes\raw_images\1570617696983.png)
 
 - 

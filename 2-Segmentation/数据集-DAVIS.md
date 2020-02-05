@@ -62,7 +62,7 @@ The interactive scenario assumes the user gives iterative refinement inputs to t
 
 In the classical DAVIS Semi-supervised Challenge track, the task is to segment an object in a *semi-supervised* manner, i.e. the given input is the ground truth mask of the first frame. In the **DAVIS Interactive Challenge**, in contrast, the user input is scribbles, which can be drawn much faster by humans and thus are a more realistic type of input.
 
-![1568880469267](C:\Users\j00496872\Desktop\Notes\raw_images\1568880469267.png)
+![1568880469267](D:\Notes\raw_images\1568880469267.png)
 
 More information in the [DAVIS 2018 publication](https://arxiv.org/abs/1803.00557) and the [Interactive Python package documentation](https://interactive.davischallenge.org/).
 

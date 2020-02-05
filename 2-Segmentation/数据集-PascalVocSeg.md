@@ -21,15 +21,15 @@ The twenty object classes that have been selected are:
 2. **Detection**: Predicting the bounding box and label of each object from the twenty target classes in the test image.
 3. **Segmentation**: Generating pixel-wise segmentations giving the class of the object visible at each pixel, or "background" otherwise.
 
-![1562812768439](C:\Users\j00496872\Desktop\Notes\raw_images\1562812768439.png)
+![1562812768439](D:\Notes\raw_images\1562812768439.png)
 
 4. **Action Classification:** Predicting the action(s) being performed by a person in a still image. 10 action classes + "other"
 
-![1562812818944](C:\Users\j00496872\Desktop\Notes\raw_images\1562812818944.png)
+![1562812818944](D:\Notes\raw_images\1562812818944.png)
 
 5. **Person Layout**: Predicting the bounding box and label of each part of a person (head, hands, feet).
 
-![1562812842778](C:\Users\j00496872\Desktop\Notes\raw_images\1562812842778.png)
+![1562812842778](D:\Notes\raw_images\1562812842778.png)
 
 
 

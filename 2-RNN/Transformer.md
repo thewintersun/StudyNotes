@@ -14,7 +14,7 @@ In the previous post, we looked at Attention – a ubiquitous method in modern d
 
 
 
-![1578725923396](C:\Users\j00496872\Desktop\Notes\raw_images\1578725923396.png)
+![1578725923396](D:\Notes\raw_images\1578725923396.png)
 
 ## A High-Level Look
 

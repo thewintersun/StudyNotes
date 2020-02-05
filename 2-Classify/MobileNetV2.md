@@ -123,7 +123,7 @@ $$
 
 图像分类的实验，主要是在以上的网络上进行的，ShuffleNet是V1的版本使用了分组卷积和shuffling, 也使用了类似的残差结构（c）中的（b）。ImageNet结果如下：
 
-![1577085677193](C:\Users\j00496872\Desktop\Notes\raw_images\1577085677193.png)
+![1577085677193](D:\Notes\raw_images\1577085677193.png)
 
 #### Object Detection
 
@@ -131,13 +131,13 @@ $$
 
 应用在物体检测任务上，V1与常用检测网络的对比：
 
-![1577085707305](C:\Users\j00496872\Desktop\Notes\raw_images\1577085707305.png)
+![1577085707305](D:\Notes\raw_images\1577085707305.png)
 
 可以看到，基于MobileNetV2的SSDLite在COCO数据集上超过了YOLOv2，并且大小小10倍速度快20倍。
 
 #### Semantic Segmentation
 
-![1577085727235](C:\Users\j00496872\Desktop\Notes\raw_images\1577085727235.png)
+![1577085727235](D:\Notes\raw_images\1577085727235.png)
 
 分割效果如下：
 

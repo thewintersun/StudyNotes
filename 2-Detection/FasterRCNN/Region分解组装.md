@@ -25,7 +25,7 @@ R-DAD 网络架构主要分成两个模块 MRP 和 RDA：
 
 **MRP（Multi-Scale Region Proposal）模块**，用来改善 RPN 生成的 Region Proposals 的准确率。 
 
-![1565863672634](C:\Users\j00496872\Desktop\Notes\raw_images\1565863672634.png)
+![1565863672634](D:\Notes\raw_images\1565863672634.png)
 
 图MRP模块，框内分别对应S=0.7,1,1.2的Region Proposals
 
@@ -37,19 +37,19 @@ MRP 表面意思就是生成多尺度的 Region Proposal，方法很简单，就
 
 **RDA（Region Decomposition and Assembly）模块**，作者也称它为 mutil-region-based appearance model，即基于多区域的外观模型，它可以同时描述一个物体的全局外观和局部外观，RDA 分为目标分解和目标区域集成的两部分，目标分解如图二所示，把一个目标分为上下左右四个方向的分解部分。
 
-![1565863413441](C:\Users\j00496872\Desktop\Notes\raw_images\1565863413441.png)
+![1565863413441](D:\Notes\raw_images\1565863413441.png)
 
 一般会先用线性插值两倍上采样之后再分解，后面作者给出了表格表示这样效果更好。左右刚好是特征图的左右一半，上下也同理，都会送入 RAB 模块，RAB 模块如图三所示：
 
-![1565863691740](C:\Users\j00496872\Desktop\Notes\raw_images\1565863691740.png)
+![1565863691740](D:\Notes\raw_images\1565863691740.png)
 
 ▲ 图3. RAB模块
 
 其实就是下面这个函数：
 
-![1565863722069](C:\Users\j00496872\Desktop\Notes\raw_images\1565863722069.png)
+![1565863722069](D:\Notes\raw_images\1565863722069.png)
 
-![1565863732581](C:\Users\j00496872\Desktop\Notes\raw_images\1565863732581.png)
+![1565863732581](D:\Notes\raw_images\1565863732581.png)
 
 其中 p 代表着上下左右的每一个部分或者组合后的部分如左-右 (l/r)、下-上 (b/u) 和 comb（l/r 与 b/u 的组合），*是卷积操作，f() 是 ReLU 单元。最后再取 max，是为了融合和的信息，生成同样大小的。
 
@@ -60,13 +60,13 @@ RAB 模块是一个类似 maxout 的单元，理论上它可以逼近任何连�
 #### 损失函数
 对每一个框 (box) d，我们都会通过 IoU 筛选出跟 GT (ground truth) 最匹配的 d*，如果 d 跟任何的 d* 的 IoU 超过 0.5，给予正标签，若在 0.1 到 0.5 之间的，给予负标签。R-DAD 的输出层对每一个框 d 都有四个参数化坐标和一个分类标签。对于 box regression 来说，我们与以往目标检测的参数化一致如下：
 
-![1565863749533](C:\Users\j00496872\Desktop\Notes\raw_images\1565863749533.png)
+![1565863749533](D:\Notes\raw_images\1565863749533.png)
 
 同理，是用来评估预测框和 GT 的差距的。 
 
 跟训练 RPN 网络相似，R-DAD 也需要最小化分类损失和回归损失，如下：
 
-![1565863762006](C:\Users\j00496872\Desktop\Notes\raw_images\1565863762006.png)
+![1565863762006](D:\Notes\raw_images\1565863762006.png)
 
 #### 实验结果
 文章中做了各种设置的组合，关于 MRP 里缩放因子的组合、是否有 RDA 模块以及是否上采样，得分如下表所示：
@@ -75,18 +75,18 @@ RAB 模块是一个类似 maxout 的单元，理论上它可以逼近任何连�
 
 与 Faster-RCNN 对比，作者使用了 VOC07trainval 和 VOC12trainval 数据集训练，再在 VOC07test 上测试，并且用了不同的特征提取器（VGG、ZF、Res101），得分均比 Faster-RCNN 高。
 
-![1565863822096](C:\Users\j00496872\Desktop\Notes\raw_images\1565863822096.png)
+![1565863822096](D:\Notes\raw_images\1565863822096.png)
 
 在速度方面均比 Faster-RCNN 慢。
 
-![1565863844396](C:\Users\j00496872\Desktop\Notes\raw_images\1565863844396.png)
+![1565863844396](D:\Notes\raw_images\1565863844396.png)
 
 
 与没有上下区域分解集成的 R-DAD 对比，有上下分解集成的误判率低很多，因为它在复杂情形下被遮挡物体会更有选择地相信得到的信息。
 
-![1565863868381](C:\Users\j00496872\Desktop\Notes\raw_images\1565863868381.png)
+![1565863868381](D:\Notes\raw_images\1565863868381.png)
 
-![1565863895061](C:\Users\j00496872\Desktop\Notes\raw_images\1565863895061.png)
+![1565863895061](D:\Notes\raw_images\1565863895061.png)
 
 #### R-DAD的优点
 

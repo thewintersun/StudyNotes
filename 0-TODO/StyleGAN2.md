@@ -38,7 +38,7 @@ FID 和 P&R 都是基于分类网络的评测方法，最近被证明更注重�
 
 ### Normalization Artifacts
 
-![1580716551850](C:\Users\j00496872\Desktop\Notes\raw_images\1580716551850.png)
+![1580716551850](D:\Notes\raw_images\1580716551850.png)
 
 Figure 1. Instance normalization causes ==water droplet -like artifacts== in StyleGAN images. 
 
@@ -46,7 +46,7 @@ Figure 1. Instance normalization causes ==water droplet -like artifacts== in Sty
 
 这个假设作者是通过实验证明的，作者去掉AdaIN层后，这种水滴似的伪影就消失了。
 
-![1580781267293](C:\Users\j00496872\Desktop\Notes\raw_images\1580781267293.png)
+![1580781267293](D:\Notes\raw_images\1580781267293.png)
 
 (a) 原始的StyleGAN, 其中A表示从W中学习仿射变换产生一种样式，B表示噪声broadcast操作。
 
@@ -54,12 +54,12 @@ Figure 1. Instance normalization causes ==water droplet -like artifacts== in Sty
 
 修改：
 
-有趣的是,==最初的StyleGAN是在样式块内施加偏差和噪声,导致它们相对的影响与当前样式的大小成反比==。我们观察到,通过将这些操作移动到样式块之外,从而获得更可预测的结果,在此块中,它们在规范化数据上运行。此外,我们注意到,在此之后,==规范化和调制足以操作标准偏差 (即mean操作是不需要的）==。==对恒定输入的偏差、噪声和归一化的应用也可以安全地删除,没有明显的缺点==。![1580780463418](C:\Users\j00496872\Desktop\Notes\raw_images\1580780463418.png)
+有趣的是,==最初的StyleGAN是在样式块内施加偏差和噪声,导致它们相对的影响与当前样式的大小成反比==。我们观察到,通过将这些操作移动到样式块之外,从而获得更可预测的结果,在此块中,它们在规范化数据上运行。此外,我们注意到,在此之后,==规范化和调制足以操作标准偏差 (即mean操作是不需要的）==。==对恒定输入的偏差、噪声和归一化的应用也可以安全地删除,没有明显的缺点==。![1580780463418](D:\Notes\raw_images\1580780463418.png)
 
 (c) 我们对原始架构进行了一些更改。在开始时,我们删除了一些多余的操作, 将b和B的添加移动到样式活动区域之外，并只调整每个特征映射的标准偏差。
 
 (d)修订后的架构使用“demodulation”操作代替Instance Normalization操作，应用在卷积层的权重上。
 
-![1580782131325](C:\Users\j00496872\Desktop\Notes\raw_images\1580782131325.png)
+![1580782131325](D:\Notes\raw_images\1580782131325.png)
 
-![1580782095764](C:\Users\j00496872\Desktop\Notes\raw_images\1580782095764.png)
+![1580782095764](D:\Notes\raw_images\1580782095764.png)

@@ -100,7 +100,7 @@ StyleGAN是NVIDIA继ProGAN之后提出的新的生成网络，其主要通过分
 - 在**中间层（16-32）**用source的样式覆盖目标的样式，合成的图像将会从source中继承较小尺度的面部特征（头发的样式、眼睛的闭合），而目标图像的姿势、脸的形状、眼镜等被保留。说明该尺度的样式控制了生成图像的较小尺度的面部特征。
 - 在**精细分辨率(642 - 1024)**用source的样式覆盖目标的样式，主要复制了source中的颜色。说明该尺度的样式控制了生成图像的更低尺度的特征-颜色。
 
-![1579511198631](C:\Users\j00496872\Desktop\Notes\raw_images\1579511198631.png)
+![1579511198631](D:\Notes\raw_images\1579511198631.png)
 
 
 
@@ -279,15 +279,15 @@ class NoiseInjection(nn.Module):
         return image + self.weight * noise
 ```
 
-![1579513678328](C:\Users\j00496872\Desktop\Notes\raw_images\1579513678328.png)
+![1579513678328](D:\Notes\raw_images\1579513678328.png)
 
 Figure 4. Examples of stochastic variation. (a)生成两幅图像。(b)利用不同的输入噪音的实现进行放大。虽然整体外观几乎是相同的，个别头发放置非常不同。(c)==每个像素超过100种不同实现的标准偏差，突出显示图像的哪些部分受到噪音的影响。主要的区域是头发、轮廓和部分背景，但是在眼睛的反射中也有有趣的随机变化==。全局方面，如身份和姿态不受随机变化的影响。
 
-![1579513921182](C:\Users\j00496872\Desktop\Notes\raw_images\1579513921182.png)
+![1579513921182](D:\Notes\raw_images\1579513921182.png)
 
 Figure 5. 将随机变化应用于不同的层的效果（将噪声输入不同层）。a. 噪声加入了所有层；b. 没有噪声；c. 在精细层（fine layers，64-1024）加入噪声；d. 在粗糙层（coarse layer，4-32）加入噪声。==粗糙的噪声导致头发大规模卷曲，背景特征更大，而细小的噪声则使头发卷曲更细，背景细节更细，皮肤毛孔更细。==
 
-![1579511249260](C:\Users\j00496872\Desktop\Notes\raw_images\1579511249260.png)
+![1579511249260](D:\Notes\raw_images\1579511249260.png)
 
 #### mixing regularization
 
@@ -301,9 +301,9 @@ Figure 5. 将随机变化应用于不同的层的效果（将噪声输入不同�
 
 视频展示：https://youtu.be/kSLJriaOumA 
 
-![1579511123385](C:\Users\j00496872\Desktop\Notes\raw_images\1579511123385.png)
+![1579511123385](D:\Notes\raw_images\1579511123385.png)
 
-![1579512099354](C:\Users\j00496872\Desktop\Notes\raw_images\1579512099354.png)
+![1579512099354](D:\Notes\raw_images\1579512099354.png)
 
 Table 2. FIDs in FFHQ for networks trained by enabling the mixing regularization for different percentage of training examples. Here we stress test the trained networks by randomizing 1 - 4 latents and the crossover points between them. Mixing regularization improves the tolerance to these adverse operations  significantly. Labels E and F refer to the configurations in Table 1.
 
@@ -328,7 +328,7 @@ Table 2. FIDs in FFHQ for networks trained by enabling the mixing regularization
 
   $w' = \overline w + \psi ( w - \overline w) , where \ \ \psi < 1$
 
-  ![1579513355645](C:\Users\j00496872\Desktop\Notes\raw_images\1579513355645.png)
+  ![1579513355645](D:\Notes\raw_images\1579513355645.png)
 
 Figure 2. Uncurated set of images produced by our style-based generator (config F) with the FFHQ dataset. Here we used a variation of the truncation trick [42, 5, 34] with $\psi = 0.7$ for resolutions $4^2 - 32^2$. Please see the accompanying video for more results.
 
@@ -352,11 +352,11 @@ Figure 2. Uncurated set of images produced by our style-based generator (config 
 
 **1. 感知路径长度（Perceptual path length）**
 
-对隐空间向量进行插值会在图像中产生非线性变化。比如，在所有端点中缺失的特征可能会出现在线性插值路径的中间。这表明隐空间是耦合的，变化因子没有被恰当的分开。==所以通过测量当在两个隐空间之间进行插值时图像的剧烈变化程度，可以反映隐空间的纠缠程度（特征分离程度）==。
+对隐空间向量进行插值会在图像中产生非线性变化。比如，在所有端点中缺失的特征可能会出现在线性插值路径的中间。这表明隐空间是耦合的，变化因子没有被恰当的分开。==所以通过测量当在两个隐空间之间进行插值时图像的剧烈变化程度，可以反映隐空间的纠缠程度（特征分离程度 ) ==。
 
 感知路径长度计算，使用10000个样本计算： 
 
-将两个隐空间之间的插值路径细分为小段，感知总长度定义为每段感知差异的总和。感知路径长度的定义是这个和在无限细的细分下的极限，实际上用一个小的细分$ \epsilon = 10^{-4}$ 来近似它。隐空间Z中所有可能端点（在路径中的位置）的平均感知路径长度，计算如下:
+将两个隐空间之间的插值路径细分为小段，感知总长度定义为每段感知差异的总和。感知路径长度的定义是这个和在无限细的细分下的极限，实际上用一个小的细分 $ \epsilon = 10^{-4}$ 来近似它。隐空间Z中所有可能端点（在路径中的位置）的平均感知路径长度，计算如下:
 $$
 l_Z = \mathbb E[{\frac 1 {\epsilon^2}}\ d(\ G(slerp(z_1,z_2;t)),\ G(slerp(z_1,z_2;t+\epsilon))\ )]
 $$
@@ -386,11 +386,11 @@ By comparing these metrics for the input vector z and the intermediate vector �
 
  **对隐空间的解耦效果（特征分离）**
 
-![1579514718118](C:\Users\j00496872\Desktop\Notes\raw_images\1579514718118.png)
+![1579514718118](D:\Notes\raw_images\1579514718118.png)
 
 Table 3. Perceptual path lengths and separability scores for various generator architectures in FFHQ (lower is better). We perform the measurements in Z for the traditional network, and in W for stylebased ones. Making the network resistant to style mixing appears to distort the intermediate latent spaceW somewhat. We hypothesize that mixing makes it more difficult forW to efficiently encode factors of variation that span multiple scales.
 
-![1579514759314](C:\Users\j00496872\Desktop\Notes\raw_images\1579514759314.png)
+![1579514759314](D:\Notes\raw_images\1579514759314.png)
 
 Table 4. The effect of a mapping network in FFHQ. The number in method name indicates the depth of the mapping network. We see that FID, separability, and path length all benefit from having a mapping network, and this holds for both style-based and traditional generator architectures. Furthermore, a deeper mapping
 network generally performs better than a shallow one.
@@ -415,7 +415,7 @@ FID 只把 Inception V3 作为特征提取器，并不依赖它判断图片的�
 
 **FID的测量结果**
 
-![1579512243165](C:\Users\j00496872\Desktop\Notes\raw_images\1579512243165.png)
+![1579512243165](D:\Notes\raw_images\1579512243165.png)
 
 Table 1. Fr´echet inception distance (FID) for various generator designs (lower is better). In this paper we calculate the FIDs using 50,000 images drawn randomly from the training set, and report the lowest distance encountered over the course of training.
 

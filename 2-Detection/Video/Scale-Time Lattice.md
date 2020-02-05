@@ -52,7 +52,7 @@ Scale-Time Lattice是一个统一的形式，其中上面提到的步骤是Scale
 
 网络结构如下所示，其中小红点表示在关键帧的检测，方格点表示尺度-时间格子，也就是空间-时间格子的结果，其中黑色虚线表示直接映射或者缩放，蓝色实线表示在空间上的传播，蓝色实线表示在空间上的微调，图中水平方向的操作是在时间上的传播，垂直方向的操作是在空间上的细化，其中PRU表示Propagation and Refinement Unit，即传播细化单元，这个基本结构是构成格子的主要组件，用来完成时间传播和空间细化。PRU将两个连续的关键帧的检测结果作为输入，然后传播到参考帧中，并且通过细化输出到下一空间尺度。
 
-![1574414910798](C:\Users\j00496872\Desktop\Notes\raw_images\1574414910798.png)
+![1574414910798](D:\Notes\raw_images\1574414910798.png)
 
 **基于尺度-时间网格，本文的视频物体检测算法被分为以下3 个步骤：**
 
@@ -76,7 +76,7 @@ Scale-Time Lattice是一个统一的形式，其中上面提到的步骤是Scale
 
 不同于DFF使用光流来传播关键帧的稠密特征，本文主要==使用MHI来编码运动信息来传播帧间运动特征==，下图比较了在不同间隔的关键帧下的不同传播方法的精度，左图是整体精度比较，右图是基于不同的目标运动的检测精度比较，其中比较主要包括Interpolation、RGB差值和MHI这三种方法，另外从右图中可以看出使用MHI方法精度提升的主要目标位快速运动的目标。
 
-![1574415359969](C:\Users\j00496872\Desktop\Notes\raw_images\1574415359969.png)
+![1574415359969](D:\Notes\raw_images\1574415359969.png)
 
 Figure 7: Results of different propagation methods under different key frame intervals. (Left) the overall results. (Right) Detailed results based on different object motion.
 
@@ -88,7 +88,7 @@ Figure 7: Results of different propagation methods under different key frame int
 
 具体过程如下：==首先在均匀选取的非常稀疏的帧（例如每隔24帧）上进行单帧的物体检测，然后根据检测结果来衡量相邻两个关键帧之间传播的难易程度，如果难易程度低于某个阈值，则在这两帧之间插入一个额外的关键帧。计算难易程度时本文考虑了两个因素，即框的大小以及物体运动快慢==，具体公式参见原文。
 
-![1574415050406](C:\Users\j00496872\Desktop\Notes\raw_images\1574415050406.png)
+![1574415050406](D:\Notes\raw_images\1574415050406.png)
 
 **时间管道重打分（Tube Rescoring）**
 

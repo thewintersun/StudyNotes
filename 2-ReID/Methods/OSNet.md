@@ -32,7 +32,7 @@
 
 1）学习全尺度特征表示。不同尺度的特征，通过Chanel-Wise Weights 进行混合，而这些权重是通过一个独立的子网生成，叫做Aggregation Gate, ==AG是跨所有分支的共享参数的子网==。
 
-![1564740192055](C:\Users\j00496872\Desktop\Notes\raw_images\1564740192055.png)
+![1564740192055](D:\Notes\raw_images\1564740192055.png)
 
 2）设计了一个轻量级的网络。带来的好处：中小型数据集（reid数据集一般都不大）不至于过拟合；大规模监控应用中reid在设备端提取特征。
 
@@ -50,7 +50,7 @@ To this end, in our building block, we factorise standard convolutions with **po
 
 在本节中，我们介绍了OSNet，它专门研究人ReID任务的全方位特征表示。 我们从分解卷积层开始，然后引入全尺寸残差块，和统一聚合门。
 
-![1564740031788](C:\Users\j00496872\Desktop\Notes\raw_images\1564740031788.png)
+![1564740031788](D:\Notes\raw_images\1564740031788.png)
 
 分解卷积：为了减少参数的数量，我们采用深度可分离的卷积，将标准卷积分成两个单独的层：逐点卷积和深度卷积。
 
@@ -58,7 +58,7 @@ To this end, in our building block, we factorise standard convolutions with **po
 
 标准卷积由4D张量$w \in R^{k×k×c×c^{'}} $ 参数化，其中k是内核大小，c是输入通道的深度，$c^{'}$是输出通道的深度。 为了学习输入张量 $x\in R^{h×w×c}$ 的空间通道相关性，其中h是高度，w是宽度，卷积运算可以表示为$x^{'} =φ（w * x）$，其中 φ 是非线性的映射（ReLU）*表示卷积。 为清楚起见，省略了偏差。图3（a）描绘了标准的实际实现3×3卷积层
 
- ![1564975889386](C:\Users\j00496872\Desktop\Notes\raw_images\1564975889386.png)
+ ![1564975889386](D:\Notes\raw_images\1564975889386.png)
 
 设 $u \in R^{1×1×c×c^{'}} $ 是一个逐点卷积核，密集地连接到信道维，
 
@@ -74,11 +74,11 @@ To this end, in our building block, we factorise standard convolutions with **po
 
 为了实现全方位表示学习，我们通过引入表示特征尺度的新维度指数 $t$ 来扩展残差函数 $F$. 对于$F^t$，当 $t> 1$时，我们堆叠 $t$ Lite $3×3$ 层，这导致大小$（2t + 1）×（2t + 1）$ 的感受野。 然后，要学习的残差 $\bar{x}$ 是直到 $T$ 的表示的增量比例的总和。本论文将T设为4，也就是说感受野最大为9.
 
-![1565920293410](C:\Users\j00496872\Desktop\Notes\raw_images\1565920293410.png)
+![1565920293410](D:\Notes\raw_images\1565920293410.png)
 
 where $F$ represents a Lite $3 × 3$ layer that learns single scale features (scale = 3).
 
-![1565920880852](C:\Users\j00496872\Desktop\Notes\raw_images\1565920880852.png)
+![1565920880852](D:\Notes\raw_images\1565920880852.png)
 
 #### 统一聚合门
 
@@ -86,7 +86,7 @@ where $F$ represents a Lite $3 × 3$ layer that learns single scale features (sc
 
 加入此聚合门之后的残差项公式为：
 
-![1565921318382](C:\Users\j00496872\Desktop\Notes\raw_images\1565921318382.png)
+![1565921318382](D:\Notes\raw_images\1565921318382.png)
 
 G is implemented as a mini-network composed of ==a non-parametric global average pooling layer== [41] and
 a ==multi-layer perceptron (MLP)== with one ==ReLU-activated== hidden layer, followed by the ==sigmoid activation==. 
@@ -144,7 +144,7 @@ class ChannelGate(nn.Module):
 
 #### Ablation Study
 
-![1565924796114](C:\Users\j00496872\Desktop\Notes\raw_images\1565924796114.png)
+![1565924796114](D:\Notes\raw_images\1565924796114.png)
 
 #### 结论
 

@@ -58,7 +58,7 @@ http://pan.baidu.com/s/1mgklxSc
 
 ### State-of-The-Art
 
-![1564023167055](C:\Users\j00496872\Desktop\Notes\raw_images\1564023167055.png)
+![1564023167055](D:\Notes\raw_images\1564023167055.png)
 
 https://github.com/zhunzhong07/person-re-ranking/tree/master/CUHK03-NP
 

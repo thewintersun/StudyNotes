@@ -18,15 +18,15 @@ Boost your Content Moderation System with our **Reverse-Image-Analysis** and red
 
 图像是个关键。Navee的反向图像分析工具是发现这些欺诈者的有利工具，因为没有偷来的图片就没有产品或身份欺诈，甚至最聪明的黑客也需要图像来欺骗你的用户。我们授权您寻找被盗的图像。
 
-![1574154152610](C:\Users\j00496872\Desktop\Notes\raw_images\1574154152610.png)
+![1574154152610](D:\Notes\raw_images\1574154152610.png)
 
-![1574153900629](C:\Users\j00496872\Desktop\Notes\raw_images\1574153900629.png)
+![1574153900629](D:\Notes\raw_images\1574153900629.png)
 
 
 
 ### 2. 公司合作伙伴
 
-![1574154024956](C:\Users\j00496872\Desktop\Notes\raw_images\1574154024956.png)
+![1574154024956](D:\Notes\raw_images\1574154024956.png)
 
 ### 3. 关键产品与技术
 

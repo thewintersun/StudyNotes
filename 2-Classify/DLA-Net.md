@@ -28,7 +28,7 @@ improves recognition and resolution compared to existing branching and merging s
 
 上图中方框里的标注，第一个表示输出通道，中间表示卷积核尺寸，最后表示输入通道。(a)和(b)来自何恺明的ResNet，(c)来自CVPR2017的文章《Aggregated residual transformations for deep neural networks》。
 
-![1578726878440](C:\Users\j00496872\Desktop\Notes\raw_images\1578726878440.png)
+![1578726878440](D:\Notes\raw_images\1578726878440.png)
 
 Figure 1: Deep layer aggregation unifies semantic and spatial fusion to better capture what and where. Our aggregation architectures encompass and extend densely connected networks and feature pyramid networks with hierarchical and iterative skip connections that deepen the representation and refine resolution.
 
@@ -72,5 +72,5 @@ IDA是针对subnetwork的，而HDA 则是针对conv block。(d) 每个block只�
 
 ### 实验结果
 
-![1578726713111](C:\Users\j00496872\Desktop\Notes\raw_images\1578726713111.png)
+![1578726713111](D:\Notes\raw_images\1578726713111.png)
 

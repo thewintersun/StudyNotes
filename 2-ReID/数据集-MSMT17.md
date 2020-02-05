@@ -4,7 +4,7 @@
 
 **Description to MSMT17**
 
-![1564019193311](C:\Users\j00496872\Desktop\Notes\raw_images\1564019193311.png)To collect a large-scale person re-identification dataset-MSMT17, we utilize an ==15-camera== network deployed in campus. This camera network contains ==12 outdoor cameras== and ==3 indoor cameras==. We select 4 days with ==different weather conditions== in a month for video collection. For each day, 3 hours of videos taken in the morning, noon, and afternoon, respectively, are selected for pedestrian detection and annotation. Our final raw video set contains ==180 hours of videos==, 12 outdoor cameras, 3 indoor cameras, and 12 time slots. ==Faster RCNN== is utilized for pedestrian bounding box detection. Three labelers go through the detected bounding boxes and annotate ID label for 2 months. Finally, ==126,441 bounding boxes== of ==4,101 identities== are annotated. Some statistics on MSMT17 are shown in above. Compared with existing datasets, we summarize the new features in MSMT17 into the following aspects:
+![1564019193311](D:\Notes\raw_images\1564019193311.png)To collect a large-scale person re-identification dataset-MSMT17, we utilize an ==15-camera== network deployed in campus. This camera network contains ==12 outdoor cameras== and ==3 indoor cameras==. We select 4 days with ==different weather conditions== in a month for video collection. For each day, 3 hours of videos taken in the morning, noon, and afternoon, respectively, are selected for pedestrian detection and annotation. Our final raw video set contains ==180 hours of videos==, 12 outdoor cameras, 3 indoor cameras, and 12 time slots. ==Faster RCNN== is utilized for pedestrian bounding box detection. Three labelers go through the detected bounding boxes and annotate ID label for 2 months. Finally, ==126,441 bounding boxes== of ==4,101 identities== are annotated. Some statistics on MSMT17 are shown in above. Compared with existing datasets, we summarize the new features in MSMT17 into the following aspects:
 
 (1) Larger number of identities, bounding boxes, and cameras.
 (2) Complex scenes and backgrounds.
@@ -52,6 +52,6 @@ state of the art methods: https://www.pkuvmc.com/publications/state_of_the_art.h
 [2] C. Su et al. Pose-driven deep convolutional model for person re-identification. In ICCV, 2017.
 [3] L. Wei et al. Glad: Global-local-alignment descriptor for pedestrian retrieval. In ACM MM, 2017.
 
-![1564022948200](C:\Users\j00496872\Desktop\Notes\raw_images\1564022948200.png)
+![1564022948200](D:\Notes\raw_images\1564022948200.png)
 
  

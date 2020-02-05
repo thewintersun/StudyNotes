@@ -91,11 +91,11 @@
 
 这里作者结合Unbounded fusion（训练不稳定），Softmax-based fusion（softmax的计算很耗资源）的优点，提出Fast normalized fusion：
 
-![1576057559531](C:\Users\j00496872\Desktop\Notes\raw_images\1576057559531.png)
+![1576057559531](D:\Notes\raw_images\1576057559531.png)
 
 各层的融合方法为: 
 
-![1576057599712](C:\Users\j00496872\Desktop\Notes\raw_images\1576057599712.png)
+![1576057599712](D:\Notes\raw_images\1576057599712.png)
 
 **EfficientDet**
 
@@ -115,7 +115,7 @@
 
 受近期研究 [5, 31] 的启发，研究者提出一种目标检测复合缩放方法，它使用简单的复合系数 φ 统一扩大主干网络、BiFPN 网络、边界框/类别预测网络的所有维度。
 
-![1576058111649](C:\Users\j00496872\Desktop\Notes\raw_images\1576058111649.png)
+![1576058111649](D:\Notes\raw_images\1576058111649.png)
 
 **实验**
 

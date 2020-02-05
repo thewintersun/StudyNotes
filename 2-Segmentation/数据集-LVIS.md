@@ -8,7 +8,7 @@
 
 
 
-![1572858940097](C:\Users\j00496872\Desktop\Notes\raw_images\1572858940097.png)
+![1572858940097](D:\Notes\raw_images\1572858940097.png)
 
 ##### Overview
 
@@ -32,7 +32,7 @@ The challenge is hosted on [EvalAI](https://evalai.cloudcv.org/). The evaluation
 
 The [LVIS paper on arXiv](https://arxiv.org/abs/1908.03195) now includes two new appendix sections that will be of great interest to anyone who's participating in the challenge. Appendix B shows two Mask R-CNN baselines on the LVIS v0.5 val set and Appendix C is an analysis of how results transfer from the val set to the test set that will be used in the challenge.
 
-  ![1572858412747](C:\Users\j00496872\Desktop\Notes\raw_images\1572858412747.png)
+  ![1572858412747](D:\Notes\raw_images\1572858412747.png)
 
 **Note**: LVIS uses the COCO 2017 train, validation, and test image sets. If you have already downloaded the COCO images, ==you only need to download the LVIS annotations==. Please refer this [link](https://groups.google.com/forum/#!msg/lvis-dataset/pxFYMCyi6MY/G8vwKLwxAAAJ) if you are having trouble with image file paths for val json.
 
@@ -40,4 +40,4 @@ The [LVIS paper on arXiv](https://arxiv.org/abs/1908.03195) now includes two new
 
 LVIS has annotations for instance segmentations in a format similar to [COCO](http://cocodataset.org/#home). The annotations are stored using JSON. The[ LVIS API](https://github.com/lvis-dataset/lvis-api) can be used to access and manipulate annotations. The JSON file has the following format:
 
-![1572858513872](C:\Users\j00496872\Desktop\Notes\raw_images\1572858513872.png)
+![1572858513872](D:\Notes\raw_images\1572858513872.png)

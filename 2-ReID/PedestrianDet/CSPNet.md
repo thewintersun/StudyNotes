@@ -26,9 +26,9 @@ Center and Scale Prediction (CSP) based detector
 
 结构图，将中心点和大小预测分为两个分支，分别进行预测。
 
-![1565838493899](C:\Users\j00496872\Desktop\Notes\raw_images\1565838493899.png)
+![1565838493899](D:\Notes\raw_images\1565838493899.png)
 
-![1565839257893](C:\Users\j00496872\Desktop\Notes\raw_images\1565839257893.png)
+![1565839257893](D:\Notes\raw_images\1565839257893.png)
 
 Fig. 2 Overall architecture of CSP, which mainly comprises two components, i.e. the feature extraction
 module and the detection head. The feature extraction module concatenates feature maps of different resolutions into a single one. The detection head merely contains a 3x3 convolutional layer, followed by two
@@ -40,17 +40,17 @@ prediction layers, one for the center location and the other for the correspondi
 - Since the feature maps from each stage have different scales, we ==use L2-normalization== to rescale their norms to 10, which is similar to [21]. 
 - Similarly to [43], ==stride = 4 gives the best performance== as demonstrated in our experiments, because a larger r means coarser feature maps which struggle on accurate localization, while a smaller r brings more computational burdens.
 
-![1565840527476](C:\Users\j00496872\Desktop\Notes\raw_images\1565840527476.png)
+![1565840527476](D:\Notes\raw_images\1565840527476.png)
 
-![1565840987249](C:\Users\j00496872\Desktop\Notes\raw_images\1565840987249.png)
+![1565840987249](D:\Notes\raw_images\1565840987249.png)
 
 #### Loss结构
 
-![1565841453168](C:\Users\j00496872\Desktop\Notes\raw_images\1565841453168.png)
+![1565841453168](D:\Notes\raw_images\1565841453168.png)
 
-![1565841384621](C:\Users\j00496872\Desktop\Notes\raw_images\1565841487883.png)
+![1565841384621](D:\Notes\raw_images\1565841487883.png)
 
-![1565841562783](C:\Users\j00496872\Desktop\Notes\raw_images\1565841562783.png)
+![1565841562783](D:\Notes\raw_images\1565841562783.png)
 
 In order to reduce the ambiguity of these negatives surrounding the positives, we also ==apply a 2D Gaussian mask==G(:) centered at the location of each positive, which is similar in [18,43].
 
@@ -72,7 +72,7 @@ To combat the extreme positive-negative imbalance problem, the ==focal weights [
 
 If the offset prediction branch is appended, the similar smooth L1 loss is adopted.
 
-![1565841326867](C:\Users\j00496872\Desktop\Notes\raw_images\1565841326867.png)
+![1565841326867](D:\Notes\raw_images\1565841326867.png)
 
 weights for center classification, scale regression and offset regression losses, which are experimentally set as ==0.01, 1 and 0.1,== respectively.
 
@@ -82,6 +82,6 @@ weights for center classification, scale regression and offset regression losses
 
 CityPerson 1024*2018的测试结果
 
-![1565840601666](C:\Users\j00496872\Desktop\Notes\raw_images\1565840601666.png)
+![1565840601666](D:\Notes\raw_images\1565840601666.png)
 
-![1565840728085](C:\Users\j00496872\Desktop\Notes\raw_images\1565840728085.png)
+![1565840728085](D:\Notes\raw_images\1565840728085.png)

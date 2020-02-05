@@ -59,7 +59,7 @@ $V_{ij} = M_i*W_{ij}$
 
 EM Routing 过程
 
-![1562202353208](C:\Users\j00496872\Desktop\Notes\raw_images\1562202353208.png)
+![1562202353208](D:\Notes\raw_images\1562202353208.png)
 
 ```python
 class ConvCaps(nn.Module):

@@ -16,7 +16,7 @@ LeaderBoard地址：https://jingdongwang2017.github.io/Projects/ReID/Datasets/re
 
  Market-1501 数据集，收自清华大学一个超市门口的==6个摄像头==，其中5个是高清摄像头，1个是低分辨率摄像头， 不同的摄像头会有视野的重叠。
 
-![1562832263362](C:\Users\j00496872\Desktop\Notes\raw_images\1562832263362.png)
+![1562832263362](D:\Notes\raw_images\1562832263362.png)
 
 数据集包含标注好的 ==32,668 BBOX==，来自于==1,501 个对象==. 每个对象最多被6个摄像头捕获，至少被2个摄像头捕获。 该数据集有三个特征：
 

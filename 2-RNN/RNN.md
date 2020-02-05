@@ -36,7 +36,7 @@ PyTorch implementation:
 ```
 The above specifies the forward pass of a vanilla RNN. This RNN’s parameters are the three matrices W_hh, W_xh, W_hy. _The hidden state self.h is initialized with the zero vector_. The np.tanh function implements a non-linearity that squashes the activations to the range [-1, 1]. Notice briefly how this works: There are two terms inside of the tanh: one is based on the previous hidden state and one is based on the current input. In numpy np.dot is matrix multiplication. The two intermediates interact with addition, and then get squashed by the tanh into the new state vector. 
 
-![1565868673906](C:\Users\j00496872\Desktop\Notes\raw_images\1565868673906.png)
+![1565868673906](D:\Notes\raw_images\1565868673906.png)
 
 **Going deep.** For instance, we can form a 2-layer recurrent network as follows:
 ```
@@ -50,9 +50,9 @@ In other words we have two separate RNNs: One RNN is receiving the input vectors
 ### Bidirectional RNN
 Bidirectional RNNs are based on the idea that the output at time t may not only depend on the previous elements in the sequence, but also future elements. For example, to predict a missing word in a sequence you want to look at both the left and the right context. Bidirectional RNNs are quite simple. They are just two RNNs stacked on top of each other. The output is then computed based on the hidden state of both RNNs.
 
-![1565868420167](C:\Users\j00496872\Desktop\Notes\raw_images\1565868420167.png)
+![1565868420167](D:\Notes\raw_images\1565868420167.png)
 
 ### Deep (Bidirectional) RNNs
 Deep (Bidirectional) RNNs are similar to Bidirectional RNNs, only that we now have multiple layers per time step. In practice this gives us a higher learning capacity (but we also need a lot of training data).
 
-![1565868464193](C:\Users\j00496872\Desktop\Notes\raw_images\1565868464193.png)
+![1565868464193](D:\Notes\raw_images\1565868464193.png)

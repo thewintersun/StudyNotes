@@ -11,7 +11,7 @@
 Hinton自己也承认，CNN做的非常好。但是当Hinton做了一系列认知神经科学的试验后，HInton 觉得有些动摇，直至他现在反对CNN。
 最简单的手相性就是分清左右，这个到现在很多人都会搞混。判断手相性对人来说是很困难的。Hinton 给的例子是“意识旋转”(mental rotation)，这个问题是判断某两个图形的手相性是否一致:
 
-![1565866951204](C:\Users\j00496872\Desktop\Notes\raw_images\1565866951204.png)
+![1565866951204](D:\Notes\raw_images\1565866951204.png)
 
 我们无法直接回答，而是要在意识中“旋转”某个R，才能判断手相性是否一致。并且角度差的越大，人判断时间就越长。
 而“意识旋转”同样突出了“坐标框架”的存在，我们难以判断手相性，是因为它们有不一致的坐标框架，我们需要通过旋转把坐标框架变得一致，才能从直觉上知道它们是否一致。
@@ -32,7 +32,7 @@ Hinton 反对 CNN的另外一个理由是，CNN的目标不正确。问题主要
 Hinton的看法是，我们需要 Equivariance 而不是 Invariance。
 所谓 Invariance，是指表示不随变换变化，比如分类结果等等。
 
-![1565867020025](C:\Users\j00496872\Desktop\Notes\raw_images\1565867020025.png)
+![1565867020025](D:\Notes\raw_images\1565867020025.png)
 
 Invariance 主要是通过 Pooling 等下采样过程得到的。如果你对训练神经网络有经验，你可能会想到我们在做图像预处理和数据拓增的时候，会把某些图片旋转一些角度，作为新的样本，给神经网络识别。
 
@@ -107,7 +107,7 @@ $$
 其中 $\hat{\mathbf{s}_j } $是单位化向量，也就是缩放向量的长度为 ${\|\mathbf{s}_j\|^2\over 1+\|\mathbf{s}_j\|^2} $
 它画出来如下：
 
-![1565867243537](C:\Users\j00496872\Desktop\Notes\raw_images\1565867243537.png)
+![1565867243537](D:\Notes\raw_images\1565867243537.png)
 
 这个函数的特点是：
 
@@ -124,11 +124,11 @@ Capsule 处理输入分为两个阶段：线性组合和routing。
 
 （其中u是下层的向量，由前层的标号为i的capsule产生，带帽子的u是处理后的结果，送给后层的标号为j的capsule）。这等于，原来NN中的“边权”（常量）变成了矩阵。
 
-![1565867339366](C:\Users\j00496872\Desktop\Notes\raw_images\1565867339366.png)
+![1565867339366](D:\Notes\raw_images\1565867339366.png)
 
 关于 routing 部分，其实是给 $\mathbf{\hat{u}}_{i|j} $加权求和，权重是 $\mathbf{c}_{ij} $。
 
-![1565867354768](C:\Users\j00496872\Desktop\Notes\raw_images\1565867354768.png)
+![1565867354768](D:\Notes\raw_images\1565867354768.png)
 
 而$ \mathbf{c}_{ij} $ 是 $\mathbf{b}_{ij} $ softmax 的结果，从而使得$ \mathbf{c}_{ij}  $分布归一化；并且由于softmax会使分布“尖锐化”，从而只有少数 $\mathbf{c}_{ij}$  有较大的取值，这样就起到了routing的作用（只有少数 $\mathbf{\hat{u}}_{i|j} $ 的权重较大，就好像底层的某个capsule的输出只贡献给上面的某个capsule）。
 
@@ -136,16 +136,16 @@ Routing 的更新：Updating by agreement
 
 按照 Hinton 在很多视频中的理念，“找到最好的（处理）路径等价于（正确）处理了图像”。这也是 Capsule 框架中引入 Routing 的原因之一。而找到“最好路径”的方法之一就是找到最符合输出的输入向量。符合度通过输出向量和输入向量（线性变换后的向量）的内积所表征，这个符合度直接被加入到 $\mathbf{b}_{ij} $ 中。
 
-![1565867423291](C:\Users\j00496872\Desktop\Notes\raw_images\1565867423291.png)更新算法
-![1565867444678](C:\Users\j00496872\Desktop\Notes\raw_images\1565867444678.png)
+![1565867423291](D:\Notes\raw_images\1565867423291.png)更新算法
+![1565867444678](D:\Notes\raw_images\1565867444678.png)
 
 这个更新算法很容易收敛。论文中认为3次足矣。routing 和其他算法一样也有过拟合的问题，虽然增加routing的迭代次数可以提高准确率，但是会增加泛化误差，所以不宜过多迭代。
 
-![1565867464738](C:\Users\j00496872\Desktop\Notes\raw_images\1565867464738.png)
+![1565867464738](D:\Notes\raw_images\1565867464738.png)
 
 #### 总结： capsule和传统神经元的对比
 
-![1565867494041](C:\Users\j00496872\Desktop\Notes\raw_images\1565867507791.png)
+![1565867494041](D:\Notes\raw_images\1565867507791.png)
 
 作者：云梦居客
 链接：https://www.zhihu.com/question/67287444/answer/251460831
@@ -158,13 +158,13 @@ $u_{i}$到 $\hat{u}$ (Eq.2)是一个仿射变换，这是传统神经元所没�
 
 #### 网络结构：CapsNet
 
-![1565867753411](C:\Users\j00496872\Desktop\Notes\raw_images\1565867753411.png)
+![1565867753411](D:\Notes\raw_images\1565867753411.png)
 
 这个实现用论文中使用mnist数据集进行实验，原始图片 28x28x1 首先使用ReLU Conv1(256个 9x9 核，步长为1)进行卷积操作，生成 20x20x256 feature maps。为了生成输入从标量变为8维的向量，使用 32个 9x9 核，步长为2 对上一个 feature maps进行卷积 8次，生成 32x6x6x8 (32个Capsules)。接着使用动态路由算法，最后经过一层全连接的隐藏层和Sigmoid层进行输出。
 
 首先，来一个标准的CNN+ReLU。强迫症患者可能感到不是很舒服：为什么不全部使用Capsule，而是要来个CNN呢？
 
-![1565867779435](C:\Users\j00496872\Desktop\Notes\raw_images\1565867779435.png)
+![1565867779435](D:\Notes\raw_images\1565867779435.png)
 
 原因其实很简单，Capsule 的向量是用来表征某个物体的“实例”，并且按照假设，越高级的capsule能够表征更高级的实例。如果不通过CNN抽取特征，那么Capsule就直接得到图片的内容，这并不是很理想的低级特征。而浅层的CNN却擅长抽取低级特征，于是用CNN是在情理之中的。
 
@@ -173,11 +173,11 @@ $u_{i}$到 $\hat{u}$ (Eq.2)是一个仿射变换，这是传统神经元所没�
 但是，一层 CNN 的能力不足以抽取到合适的特征，于是这篇论文又加了一个 CNN层（一共32个CNN，文中称为32个channels，每个CNN有8个filters），这个 CNN 的输出构成了第一层 Capsules 的向量。
 由于 CNN 共享权值的特点，这一层每个 CNN 输出的feature map中的36个capsules 是共享权值的（通过CNN）。显然所有的Capsules都共享权值是有问题的，这也是为什么这层搞32个CNN的道理：不同的 CNN 输出的Capsules间是独立的。
 
-![1565867816317](C:\Users\j00496872\Desktop\Notes\raw_images\1565867816317.png)
+![1565867816317](D:\Notes\raw_images\1565867816317.png)
 
 为了加深理解，我们可以对比一下CNN的输出和这层输出的Capsules的区别:
 
-![1565867838697](C:\Users\j00496872\Desktop\Notes\raw_images\1565867838697.png)
+![1565867838697](D:\Notes\raw_images\1565867838697.png)
 
 我们可以看到它们的相似点在于，每个”平面“内，变量都是共享权值的；而在不同”平面“内，变量是独立的。而不同点在于，在”平面“内CNN的单位是标量，而Capsules是一个capsule表征的向量。
 
@@ -185,12 +185,12 @@ $u_{i}$到 $\hat{u}$ (Eq.2)是一个仿射变换，这是传统神经元所没�
 
 第三层，也是输出层，就是一组10个标准的 Capsules，每个 capsule 代表一个数字。每个capsules 输出向量的元素个数为16。这组 Capsules 被称为 DigitCaps （取名逼死强迫症）。从 PrimaryCapsules 到 DigitCaps 使用了上文所述的 dynamic routing。这也是唯一使用dynamic routing 的地方。
 
-![1565867872009](C:\Users\j00496872\Desktop\Notes\raw_images\1565867872009.png)
+![1565867872009](D:\Notes\raw_images\1565867872009.png)
 按照假定，某个 capsule 输出向量的(范数)长度表示某个 capsule 表征的内容出现的概率，所以做分类的时候取输出向量的 L2 范数即可。
 
 > 这里注意到，最后 capsules 输出的概率向量不是归一的，也就是 capsules 天然有同时识别多个物体的能力。
 
-![1565867913047](C:\Users\j00496872\Desktop\Notes\raw_images\1565867913047.png)
+![1565867913047](D:\Notes\raw_images\1565867913047.png)
 
 #### 优化
 
@@ -208,17 +208,17 @@ Hinton 一直坚持的一个理念是，一个好的robust的模型，一定能�
 之前我们说过，capsule 的一个重要假设是每个 capsule 的向量可以表征一个实例。怎么来检验这个假设呢？一个方法就是重构。
 重构的时候，我们单独取出需要重构的向量，扔到后面的网络中重构。当然后面的重构网络需要训练。
 
-![1565867990405](C:\Users\j00496872\Desktop\Notes\raw_images\1565867990405.png)
+![1565867990405](D:\Notes\raw_images\1565867990405.png)
 
 但是有读者可能会有疑问：如何证明重构的好是因为Capsules输出了良好的表示，而不是因为后面的网络拟合的结果？我们知道哪怕前面的输入是随机的，由于神经网络强大的拟合能力，后面的网络也能拟合出重构结果。
 一个证据是人为扰动 capsule 的输出向量。我们可以看到，如果逐渐改变向量的一些分量，表示也很有规律地改变，这是随机的输入难以做到的。
 
-![1565868006753](C:\Users\j00496872\Desktop\Notes\raw_images\1565868006753.png)
+![1565868006753](D:\Notes\raw_images\1565868006753.png)
 
 **重构与无监督学习**
 论文中发现如果把重构误差计入，可以显著地提高准确率：
 
-![1565868029063](C:\Users\j00496872\Desktop\Notes\raw_images\1565868029063.png)
+![1565868029063](D:\Notes\raw_images\1565868029063.png)
 （其实很搞笑的是，这种提升远远大于对dynamic routing的调整）
 
 需要注意到，重构是无监督的方式，不需要标签。如果重构能够大幅提升分类效果，那么就暗示了可以通过重构做无监督学习（重构也可能是人做无监督学习的途径之一）。这部分Hinton提了很多，应该已经做出来了，不过看样子不在这篇论文当中。
@@ -230,10 +230,10 @@ Hinton 一直坚持的一个理念是，一个好的robust的模型，一定能�
 
 右侧模型误把”5“识别成了”3“，通过重构，模型”告诉“我们，这是因为它认为正常的”5“的头是往右边伸出的，而给它的”5“是一个下面有缺口的”3“。
 
-![1565868060589](C:\Users\j00496872\Desktop\Notes\raw_images\1565868060589.png)
+![1565868060589](D:\Notes\raw_images\1565868060589.png)
 在识别重叠数字的时候，它显示了更强的重构能力，并且拒绝重构不存在的对象（右侧*号）
 
-![1565868075784](C:\Users\j00496872\Desktop\Notes\raw_images\1565868075784.png)
+![1565868075784](D:\Notes\raw_images\1565868075784.png)
 
 **为什么选择 MNIST 而不是 ImageNet**
 
@@ -250,4 +250,4 @@ Hinton 一直坚持的一个理念是，一个好的robust的模型，一定能�
 
 此图源自：https://zhuanlan.zhihu.com/p/30970675 
 
-![1565868106188](C:\Users\j00496872\Desktop\Notes\raw_images\1565868106188.png)
+![1565868106188](D:\Notes\raw_images\1565868106188.png)

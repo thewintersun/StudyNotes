@@ -15,7 +15,7 @@ CVPR2019的一篇single-stage detection的文章，来自CMU。
 
 在single-stage模型中，我们会定义一系列稠密的均匀分布的anchor，这些anchor会根据其不同的尺寸大小和不同的feature map联系起来。在带有FPN的backbone中，高层的feature map分辨率高，得到的anchor数量多尺寸小，浅层的feature map分辨率低，得到的anchor数量少尺寸大，anchor的生成是根据feature map不同而定义的。在anchor match gt阶段，gt与anchor匹配，确定gt归属于哪些anchor，这个过程隐式的决定了gt会由哪层feature map负责预测。不管是生成anchor还是gt match 过程，都是由size这个变量决定，虽然我们会设定先验的规则来选择最好的feature map，==但存在的问题是，仅仅利用size来决定哪些feature map来检测物体是一种暴力的做法==。如下图所示，60x60大小的car和50x50大小的car被分在了不同feature map，50x50和40x40的被分在了同一级feature map，谁也不能证明这种做法不好，但谁也不能证明这种做法就是最好，那么何不让模型自动学习选择合适的feature 去做预测呢？
 
-![1565859894767](C:\Users\j00496872\Desktop\Notes\raw_images\1565860420453.png)
+![1565859894767](D:\Notes\raw_images\1565860420453.png)
 
 #### Method
 
@@ -25,13 +25,13 @@ CVPR2019的一篇single-stage detection的文章，来自CMU。
 
 先来看看FSAF的结构。文章提出的FSAF以RetinaNet为主要结构，添加一个FSAF分支和原来的classification subnet、regression subnet并行，可以不改变原有结构的基础上实现完全的end-to-end training，特别是，FSAF还可以集成到其他single-stage模型中，比如SSD、DSSD等。
 
-![1565860027568](C:\Users\j00496872\Desktop\Notes\raw_images\1565860027568.png)
+![1565860027568](D:\Notes\raw_images\1565860027568.png)
 
 Figure 4: Network architecture of RetinaNet with our FSAF module. The FSAF module only introduces two additional conv layers (dashed feature maps) per pyramid level, keeping the architecture fully convolutional.
 
 FSAF同样包含classification和box regression两个分支，分别得到predict box所属的类别和坐标值。
 
-![1565859983177](C:\Users\j00496872\Desktop\Notes\raw_images\1565859983177.png)
+![1565859983177](D:\Notes\raw_images\1565859983177.png)
 
 Figure 3: Overview of our FSAF module plugged into conventional anchor-based detection methods. During training, each instance is assigned to a pyramid level via feature selection for setting up supervision signals.
 
@@ -39,7 +39,7 @@ Figure 3: Overview of our FSAF module plugged into conventional anchor-based det
 
 对于一个instance，其类别为k，bounding box坐标为b=[x,y,w,h]，它映射到第 l 层feature level上的坐标为 $b_{p}^{l}$ ,定义一个有效区域$ b_{e}^{l}$ ,其占$b_{p}^{l}$的$ \epsilon_e$ ,文章设定了 $\epsilon_e=0.2$。同时定义一个忽略区域 $b_{i}^{l}$ ,其占$b_{p}^{l}$ 的$\epsilon_i$，文章设定$\epsilon_i=0.5$。如下图所示，白色是有效区域，灰色是忽略区域。
 
-![1565860133126](C:\Users\j00496872\Desktop\Notes\raw_images\1565860263662.png)
+![1565860133126](D:\Notes\raw_images\1565860263662.png)
 
 Figure 5: Supervision signals for an instance in one feature level of the anchor-free branches. We use focal loss for classification and IoU loss for box regression.
 
@@ -53,7 +53,7 @@ box regression output是一个WxHx4大小的feature map，那么在坐标为（i
 
 FSAF的设计就是为了达到自动选择最佳Feature的目的，最佳Feature是由各个feature level共同决定。
 
-![1565860309704](C:\Users\j00496872\Desktop\Notes\raw_images\1565860309704.png)
+![1565860309704](D:\Notes\raw_images\1565860309704.png)
 
 Figure 6: Online feature selection mechanism. Each instance is passing through all levels of anchor-free branches to compute the averaged classification (focal) loss and regression (IoU) loss over effective regions. Then the level with minimal summation of two losses is selected to set up the supervision signals for that instance.
 
@@ -61,15 +61,15 @@ Figure 6: Online feature selection mechanism. Each instance is passing through a
 
 每个feature level计算classification loss和box regression loss
 
-![1565860343607](C:\Users\j00496872\Desktop\Notes\raw_images\1565860343607.png)
+![1565860343607](D:\Notes\raw_images\1565860343607.png)
 
 在所有feature level中选择loss最小的作为梯度反传。
 
-![1565860359354](C:\Users\j00496872\Desktop\Notes\raw_images\1565860359354.png)
+![1565860359354](D:\Notes\raw_images\1565860359354.png)
 
 为了验证自动特征选择的有效性，文章同时对比了heuristic feature selection，该方法就是经典FPN中所采用人工定义方法：
 
-![1565860377988](C:\Users\j00496872\Desktop\Notes\raw_images\1565860377988.png)
+![1565860377988](D:\Notes\raw_images\1565860377988.png)
 
 关于training和inference，在inference中，FSAF可以单独作为一个分支输出预测结果，也可以和原来的anchor-based分支同时输出预测结果。两者都存在时，两个分支的输出结果merge然后NMS得到最后预测结果。
 
@@ -80,7 +80,7 @@ Figure 6: Online feature selection mechanism. Each instance is passing through a
 
 作者还多了SOTA模型，在ResNext-101+multi-scale下AP达到了44.6，也取得了SOAT效果。
 
-![1565860457926](C:\Users\j00496872\Desktop\Notes\raw_images\1565860457926.png)
+![1565860457926](D:\Notes\raw_images\1565860457926.png)
 
 #### 总结
 文章从feature selection角度设计了新的FSAF module来提升性能，个人认为其实从loss角度来看，提升了梯度反传的效率。 但想补充一点，关于有效区域和忽略区域的比例是不是应该再分析一下，感觉对实验结果是有影响的。
